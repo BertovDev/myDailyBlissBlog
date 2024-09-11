@@ -1,0 +1,22 @@
+---
+import FormatedDate from "./FormatedDate.astro";
+const { title, slug, pubDate, references } = Astro.props;
+---
+
+<li class="flex flex-col md:flex-row my-8 justify-start md:gap-5">
+  <FormatedDate date={pubDate} />
+  <a class="" href={`/blog/${slug}/`}>
+    <h4
+      class="text-2xl pt-1 italic font-montserrat underline underline-offset-4"
+    >
+      {title}
+    </h4>
+  </a>
+</li>
+
+<style>
+  h2,
+  h4 {
+    @apply font-bold;
+  }
+</style>
