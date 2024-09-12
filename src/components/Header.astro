@@ -1,18 +1,11 @@
 ---
 import { SITE_TITLE } from "../../consts";
-import headerImage from "./public/Component.svg";
-import headerImageMobile from "./public/ComponentMobile.png";
 ---
 
-<header class="mb-10">
-  <div class="title py-3 flex flex-col">
-    <picture>
-      <source media="(max-width: 1023px)" srcset={headerImageMobile.src} />
-      <source media="(min-width: 1024px)" srcset={headerImage.src} />
-      <img src={headerImage.src} alt="headerImage" />
-    </picture>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <h2>Welcome</h2>
+<header class="mb-10 mt-5">
+  <div class="title py-3 flex flex-row lg:flex-col">
+    <h2 class="text-xl lg:text-2xl"><a href="/">{SITE_TITLE}</a></h2>
+    <h2 class="text-lg lg:text-xl">Welcome</h2>
   </div>
   <hr />
 </header>

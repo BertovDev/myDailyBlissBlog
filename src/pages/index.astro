@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { type CollectionEntry } from "astro:content";
 import BlogItem from "../components/BlogItem.astro";
 import Header from "../components/Header.astro";
+import HeaderImage from "../components/HeaderImage.astro";
 
 const posts = await getCollection("blog");
 
@@ -11,33 +12,55 @@ type BlogCollectionEntry = CollectionEntry<"blog">;
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <Header />
-    <h2 class="text-5xl mt-10 mb-5 text-bold">Posts</h2>
-    <ul role="list" class="">
-      {
-        posts.map((post: BlogCollectionEntry) => (
-          <BlogItem
-            title={post.data.title}
-            slug={post.slug}
-            pubDate={post.data.pubDate}
-          />
-        ))
-      }
-    </ul>
+  <main
+    class="bg-black text-white min-h-screen flex flex-col lg:flex-row p-4 lg:p-0"
+  >
+    <HeaderImage />
+    <div
+      class="pt-20 lg:pt-32 lg:ml-[16.666667%] min-h-screen p-4 md:p-8 overflow-y-auto lg:w-3/4"
+    >
+      <Header />
+      <div
+        class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
+      >
+        <ul role="list" class="lg:pr-10">
+          <h2
+            class="text-4xl text-primary font-black lg:text-5xl lg:mt-10 mb-5 text-bold"
+          >
+            Posts
+          </h2>
+          {
+            posts.map((post: BlogCollectionEntry) => (
+              <BlogItem
+                title={post.data.title}
+                slug={post.slug}
+                pubDate={post.data.pubDate}
+              />
+            ))
+          }
+        </ul>
+        <ul role="list" class="">
+          <h2
+            class="text-4xl text-primary font-black lg:text-5xl lg:mt-10 mb-5 text-bold"
+          >
+            Content
+          </h2>
+          {
+            posts.map((post: BlogCollectionEntry) => (
+              <BlogItem
+                title={post.data.title}
+                slug={post.slug}
+                pubDate={post.data.pubDate}
+              />
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </main>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
   h1 {
     font-size: 4rem;
     font-weight: 700;
