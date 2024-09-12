@@ -1,14 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import { type CollectionEntry } from "astro:content";
-import BlogItem from "../components/BlogItem.astro";
+import BlogList from "../components/BlogList.astro";
 import Header from "../components/Header.astro";
 import HeaderImage from "../components/HeaderImage.astro";
-
-const posts = await getCollection("blog");
-
-type BlogCollectionEntry = CollectionEntry<"blog">;
 ---
 
 <Layout title="Welcome to Astro.">
@@ -16,6 +10,11 @@ type BlogCollectionEntry = CollectionEntry<"blog">;
     class="bg-black text-white min-h-screen flex flex-col lg:flex-row p-4 lg:p-0"
   >
     <HeaderImage />
+    <!-- <p
+      class="fixed hidden lg:inline text-xl w-full lg:top-0 lg:left-0 z-20 font-bold py-1 writing-vertical-rl transform rotate-180"
+    >
+      ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </p> -->
     <div
       class="pt-20 lg:pt-32 lg:ml-[16.666667%] min-h-screen p-4 md:p-8 overflow-y-auto lg:w-3/4"
     >
@@ -23,49 +22,9 @@ type BlogCollectionEntry = CollectionEntry<"blog">;
       <div
         class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
       >
-        <ul role="list" class="lg:pr-10">
-          <h2
-            class="text-4xl text-primary font-black lg:text-5xl lg:mt-10 mb-5 text-bold"
-          >
-            Posts
-          </h2>
-          {
-            posts.map((post: BlogCollectionEntry) => (
-              <BlogItem
-                title={post.data.title}
-                slug={post.slug}
-                pubDate={post.data.pubDate}
-              />
-            ))
-          }
-        </ul>
-        <ul role="list" class="">
-          <h2
-            class="text-4xl text-primary font-black lg:text-5xl lg:mt-10 mb-5 text-bold"
-          >
-            Content
-          </h2>
-          {
-            posts.map((post: BlogCollectionEntry) => (
-              <BlogItem
-                title={post.data.title}
-                slug={post.slug}
-                pubDate={post.data.pubDate}
-              />
-            ))
-          }
-        </ul>
+        <BlogList titleName={"Posts"} />
+        <BlogList titleName={"Content"} />
       </div>
     </div>
   </main>
 </Layout>
-
-<style>
-  h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 1em;
-  }
-</style>

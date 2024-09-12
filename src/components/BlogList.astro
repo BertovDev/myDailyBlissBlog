@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import { type CollectionEntry } from "astro:content";
+import BlogItem from "./BlogItem.astro";
+
+const posts = await getCollection("blog");
+
+type BlogCollectionEntry = CollectionEntry<"blog">;
+
+const { titleName } = Astro.props;
+---
+
+<ul role="list" class="lg:pr-10">
+  <h2
+    class="text-4xl text-primary font-black lg:text-5xl lg:mt-10 mb-5 text-bold"
+  >
+    {titleName}
+  </h2>
+  {
+    posts.map((post: BlogCollectionEntry) => (
+      <BlogItem
+        title={post.data.title}
+        slug={post.slug}
+        pubDate={post.data.pubDate}
+      />
+    ))
+  }
+</ul>
