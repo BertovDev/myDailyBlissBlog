@@ -1,0 +1,15 @@
+---
+import headerImage from "./public/Component.svg";
+import headerImageMobile from "./public/ComponentMobile.png";
+---
+
+<picture
+  class="lg:fixed lg:top-0 lg:left-0 w-full h-16 lg:w-1/6 lg:h-full bg-black flex flex-col pt-20 lg:pt-0 items-center justify-center lg:flex-col z-10"
+>
+  <source media="(max-width: 1023px)" srcset={headerImageMobile.src} />
+  <source media="(min-width: 1024px)" srcset={headerImage.src} />
+  <img src={headerImage.src} alt="headerImage" />
+  <h1 class="text-4xl font-bold writing-vertical-rl transform rotate-180">
+    MDAILYBISS
+  </h1>
+</picture>

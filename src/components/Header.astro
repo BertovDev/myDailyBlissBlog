@@ -1,14 +1,11 @@
 ---
 import { SITE_TITLE } from "../../consts";
-import Picture from "astro/components/Picture.astro";
-import headerImage from "./public/ComponentMobile.png";
 ---
 
-<header class="mb-10">
-  <div class="title py-3 flex flex-col">
-    <Picture src={headerImage} alt="Header image" />
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <h2>Welcome</h2>
+<header class="mb-10 mt-5">
+  <div class="title py-3 flex flex-row lg:flex-col">
+    <h2 class="text-xl lg:text-2xl"><a href="/">{SITE_TITLE}</a></h2>
+    <h2 class="text-lg lg:text-xl">Welcome</h2>
   </div>
   <hr />
 </header>
