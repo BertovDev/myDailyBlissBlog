@@ -6,7 +6,9 @@ const { title, slug, pubDate, references } = Astro.props;
 <li class="flex flex-col md:flex-row my-8 justify-start md:gap-5">
   <FormatedDate date={pubDate} />
   <a class="order-1" href={`/blog/${slug}/`}>
-    <h4 class="text-3xl pt-1 font-bold font-montserrat underline-offset-4">
+    <h4
+      class="text-3xl pt-1 font-bold font-montserrat underline-offset-4 hover:underline hover:text-primary"
+    >
       {title}
     </h4>
   </a>

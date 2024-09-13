@@ -16,15 +16,84 @@ import HeaderImage from "../components/HeaderImage.astro";
       ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     </p> -->
     <div
-      class="pt-20 lg:pt-32 lg:ml-[16.666667%] min-h-screen p-4 md:p-8 overflow-y-auto lg:w-3/4"
+      class="pt-20 lg:pt-32 lg:ml-[16.666667%] min-h-screen p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
     >
       <Header />
-      <div
-        class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
-      >
-        <BlogList titleName={"Posts"} />
-        <BlogList titleName={"Content"} />
+      <!-- <div
+        class="flex bg-red-100 flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
+      > -->
+      <div class="relative w-full h-3/4 cursor-pointer">
+        <div
+          class="top-0 left-0 absolute underline text-primary-150 text-9xl font-bold font-darkerGrote"
+        >
+          A COMPILATION OF
+        </div>
+        <div
+          class="top-0 left-4 underline absolute text-9xl font-bold font-darkerGrote"
+        >
+          A COMPILATION OF
+        </div>
+        <div
+          class="top-36 left-0 text-primary-150 underline absolute text-center text-9xl font-bold font-darkerGrote"
+        >
+          MY DAILY
+        </div>
+        <div
+          class="top-36 left-4 absolute underline text-center text-9xl font-bold font-darkerGrote"
+        >
+          MY DAILY
+        </div>
+        <div
+          class="top-36 right-0 absolute text-center text-9xl font-bold font-darkerGrote"
+        >
+          <!-- ********************** -->
+        </div>
+        <div
+          class="top-72 left-20 z-10 text-primary-150 underline absolute text-center text-9xl font-bold font-darkerGrote"
+        >
+          JOYNESS
+          <span class="no-underline">***</span>
+        </div>
+        <div
+          class="top-72 left-24 z-10 absolute underline text-center text-9xl font-bold font-darkerGrote"
+        >
+          JOYNESS
+          <span class="no-underline">***</span>
+        </div>
+        <div
+          class="top-72 left-10 absolute text-center text-9xl font-bold font-darkerGrote"
+        >
+          <!-- ********************** -->
+        </div>
+        <div class="w-1/2 top-80 z-0 h-1/6 bg-primary-150 absolute block">
+          <!-- <img class="rotate-0" src="/public/ComponentMobile.png" alt="" /> -->
+        </div>
+        <div class="w-1/2 top-80 z-0 left-10 h-1/6 bg-primary absolute block">
+          <!-- <img class="rotate-0" src="/public/ComponentMobile.png" alt="" /> -->
+        </div>
+        <div
+          class="w-1/2 top-80 z-0 left-20 h-1/6 bg-primary-50 absolute block"
+        >
+          <!-- <img
+            class="rotate-0 absolute bottom-2 left-10"
+            src="/public/ComponentMobile.png"
+            alt=""
+          /> -->
+        </div>
+
+        <div class="w-full -bottom-10 h-1/6 bg-primary-150 absolute block">
+        </div>
+        <div class="w-full -bottom-2 left-10 h-1/6 bg-primary absolute block">
+        </div>
+        <div
+          class="w-full bottom-10 left-20 h-1/6 bg-primary-50 absolute block"
+        >
+        </div>
       </div>
+
+      <!-- <BlogList titleName={"Posts"} />
+        <BlogList titleName={"Content"} /> -->
+      <!-- </div> -->
     </div>
   </main>
 </Layout>
