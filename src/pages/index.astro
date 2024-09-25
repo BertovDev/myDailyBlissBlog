@@ -135,7 +135,7 @@ import HeaderImage from "../components/HeaderImage.astro";
     current = Date.now();
     delta = Math.floor((current - start) / 1000);
     let random = Math.floor(Math.random() * joynessText.length);
-    const element: Element = joynessText[random];
+    const element: Element = joynessText[3];
     const tlTwinkle = gsap.timeline({ onComplete: twinkleText });
 
     if (delta % 3 === 0 && delta > 2) {
