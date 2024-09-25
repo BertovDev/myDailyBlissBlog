@@ -104,6 +104,10 @@ import HeaderImage from "../components/HeaderImage.astro";
   body {
     overflow: hidden;
   }
+
+  .joyness {
+    @apply opacity-0;
+  }
 </style>
 
 <script>
@@ -141,12 +145,12 @@ import HeaderImage from "../components/HeaderImage.astro";
         duration: random * 0.2,
         ease: "power3.inOut",
       });
-      tlTwinkle.to(element, {
-        alpha: 1,
-        duration: random * 0.2,
-        ease: "power3.inOut",
-        delay: random * 0.2,
-      });
+      // tlTwinkle.to(element, {
+      //   alpha: 1,
+      //   duration: random * 0.2,
+      //   ease: "power3.inOut",
+      //   delay: random * 0.2,
+      // });
     }
   };
 
