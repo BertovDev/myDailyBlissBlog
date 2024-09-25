@@ -16,14 +16,16 @@ import BlogList from "../../components/BlogList.astro";
       ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     </p> -->
     <div
-      class="pt-20 lg:pt-32 lg:ml-[16.666667%] min-h-screen p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
+      class="pt-10 lg:pt-32 ml-[28%] lg:ml-[16.666667%] min-h-screen p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
     >
-      <Header />
-      <div
-        class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
-      >
-        <BlogList titleName={"Posts"} />
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
+        >
+          <BlogList titleName={"Posts"} />
+        </div>
       </div>
     </div>
+    <Header />
   </main>
 </Layout>

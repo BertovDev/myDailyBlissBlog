@@ -2,38 +2,32 @@
 import { SITE_TITLE } from "../../consts";
 ---
 
-<header class="mb-10">
-  <div class="title py-2 flex flex-row lg:flex-col">
-    <div class="flex flex-col lg:flex-row justify-between">
-      <ul class="flex flex-row gap-5">
+<header
+  class="fixed px-5 bottom-0 h-16 md:h-20 z-20 left-0 right-0 lg:ml-[18%] lg:w-full w-5/4 bg-black pt-2 md:pt-5"
+>
+  <div class="w-full lg:w-9/12 py-2 flex flex-row lg:flex-col">
+    <div class="flex flex-col w-full md:flex-row justify-between">
+      <ul class="flex flex-row gap-3 justify-center">
         <h2 class="text-xl lg:text-2xl hover:text-primary">
           <a href="/">{SITE_TITLE}</a>
         </h2>
         <li
           class="text-xl flex gap-1 lg:gap-x-3 flex-row text-primary hover:text-white"
         >
-          <span class="text-white">|</span>
+          <span class="text-white px-1">|</span>
           <a href="/blog"> Blogs</a>
         </li>
         <li
           class="text-xl flex gap-1 lg:gap-x-3 flex-row text-primary hover:text-white"
         >
-          <span class="text-white">|</span>
+          <span class="text-white px-1">|</span>
           <a href=""> Music</a>
         </li>
       </ul>
-      <h2 class="text-[#ffebcd] text-lg lg:text-xl">Welcome</h2>
+      <h2 class="hidden md:inline text-[#ffebcd] text-lg lg:text-xl">
+        Welcome
+      </h2>
     </div>
   </div>
-  <hr />
+  <hr class="w-full lg:w-9/12" />
 </header>
-
-<style>
-  .title {
-    display: flex;
-    justify-content: space-between;
-  }
-  .title h2:nth-child(2) {
-    color: #ffebcd;
-  }
-</style>

@@ -1,1 +1,1 @@
-export const SITE_TITLE = "Daily life archive";
+export const SITE_TITLE = "Life archive";
