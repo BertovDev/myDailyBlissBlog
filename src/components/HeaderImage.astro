@@ -1,14 +1,13 @@
 ---
-import headerImage from "./public/Component.svg";
-import headerImageMobile from "./public/ComponentMobile.png";
+
 ---
 
 <picture class="image h-full py-6 w-1/3 lg:w-1/6 fixed top-0 left-0 bg-black">
-  <source media="(max-width: 1023px)" srcset={headerImage.src} />
-  <source media="(min-width: 1024px) " srcset={headerImage.src} />
+  <source media="(max-width: 1023px)" srcset="/Component.svg" />
+  <source media="(min-width: 1024px) " srcset="/Component.svg" />
   <img
     class="h-full object-cover pl-2"
-    src={headerImage.src}
+    src="/Component.svg"
     alt="headerImage"
   />
   <!-- <h1
