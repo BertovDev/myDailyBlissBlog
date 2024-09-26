@@ -7,56 +7,36 @@ import HeaderImage from "../components/HeaderImage.astro";
 
 <Layout title="Welcome to Astro.">
   <main
-    class="text-white min-h-screen flex flex-row items-start lg:flex-col lg:items-start lg:justify-around"
+    class="text-white min-h-screen h-screen flex flex-row items-start lg:flex-col lg:items-start lg:justify-around"
   >
     <HeaderImage />
 
     <div
-      class="grow uppercase ml-[33%] lg:ml-[11.6%] w-full text-6xl sm:text-8xl md:text-9xl font-darkerGrote font-bold mt-10"
+      class="flex flex-col h-full parent-container uppercase ml-[33%] lg:ml-[11.6%] w-full font-darkerGrote font-bold mt-10"
     >
-      <div class="lg:hidden">
-        <div class="hidden lg:block">
-          <h1 class="absolute text-primary-150">A Collection of</h1>
-          <h1 class="relative left-2">A Collection of</h1>
-        </div>
-        <div class="text-left break-words">
-          <p class="text2 inline-block absolute text-primary-150">
+      <div class="lg:hidden text text-6xl sm:text-8xl md:text-9xl">
+        <div class="text-left break-words container">
+          <p class="text text2 inline-block absolute text-primary-150">
             Some of My Daily Joyness Some of My Daily Joyness Some of My Daily
-            Joyness Some of My Daily Joyness Some of My Daily Joyness Some of My
-            Daily Joyness Some of My Daily Joyness
+            Joyness Some of My Daily <span class="joyness2">Joyness</span>
+            Some of My Daily Joyness Some of My Daily Joyness Some of My Daily Joyness
+            Some of My Daily <span class="joyness2">Joyness</span>
           </p>
-          <p class="text1 inline-block relative left-3">
-            Some of My Daily <span class="joyness">Joyness</span> Some of My Daily
+          <p class="text text1 inline-block relative left-3">
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily
             <span class="joyness">Joyness</span> Some of My Daily <span
               class="joyness">Joyness</span
-            > Some of My Daily <span class="joyness">Joyness</span> Some of My Daily
-            Joyness Some of My Daily Joyness Some of My Daily Joyness
+            > Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
           </p>
         </div>
       </div>
-      {
-        /* <div class="">
-              <h1 class="absolute text-primary-150">
-                Some of My Daily Joyness
-              </h1>
-              <h1 class="relative left-2 ">Some of My Daily Joyness</h1>
-            </div>
-            <div class="">
-              <h1 class="absolute text-primary-150">
-                Some of My Daily Joyness
-              </h1>
-              <h1 class="relative left-2">Some of My Daily Joyness</h1>
-            </div>
-            <div class="">
-              <h1 class="absolute text-primary-150">
-                Some of My Daily Joyness
-              </h1>
-              <h1 class="relative left-2">Some of My Daily Joyness</h1>
-            </div> */
-      }
-    </div>
 
-    <!-- <div
+      <!-- <div
       class="total-height pt-20 lg:pt-10 2xl:pt-32 lg:ml-[16.666667%] lg:p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
     >
       <div class="flex flex-col justify-between h-full">
@@ -96,80 +76,71 @@ import HeaderImage from "../components/HeaderImage.astro";
         </div>
       </div>
     </div> -->
-    <Header />
+      <Header />
+    </div>
   </main>
-</Layout>
 
-<style>
-  body {
-    overflow: hidden;
-  }
-
-  .joyness {
-    /* @apply opacity-0; */
-  }
-</style>
-
-<script>
-  import gsap from "gsap";
-
-  const tl = gsap.timeline({ repeat: -1, yoyo: true });
-  const joynessText = document.querySelectorAll(".joyness");
-  let start: number = Date.now();
-  let current = 0;
-  let delta = 0;
-
-  gsap.fromTo(
-    ".text1",
-    { alpha: 0, duration: 3, delay: 0.8 },
-    { alpha: 1, duration: 3, delay: 0.8 }
-  );
-
-  gsap.fromTo(
-    ".text2",
-    { alpha: 0, duration: 3, delay: 1 },
-    { alpha: 1, duration: 3, delay: 1 }
-  );
-
-  const twinkleText = () => {
-    current = Date.now();
-    delta = Math.floor((current - start) / 1000);
-    let random = Math.floor(Math.random() * joynessText.length);
-    const element: Element = joynessText[3];
-    const tlTwinkle = gsap.timeline({ onComplete: twinkleText });
-
-    if (delta % 3 === 0 && delta > 2) {
-      tlTwinkle.to(element, { alpha: 1, duration: 0.2, ease: "power3.inOut" });
-      tlTwinkle.to(element, {
-        alpha: 0,
-        duration: random * 0.2,
-        ease: "power3.inOut",
-      });
-      // tlTwinkle.to(element, {
-      //   alpha: 1,
-      //   duration: random * 0.2,
-      //   ease: "power3.inOut",
-      //   delay: random * 0.2,
-      // });
+  <style>
+    body {
+      overflow: hidden;
     }
-  };
+  </style>
 
-  // const animate = () => {
-  //   let current: number = Date.now();
-  //   let delta: number = Math.floor((current - start) / 1000);
+  <script>
+    import gsap from "gsap";
 
-  //   if (delta % 3 === 0 && delta > 3) {
-  //     random = Math.floor(Math.random() * joynessText.length);
-  //     tl.fromTo(
-  //       joynessText[random],
-  //       { alpha: 1, duration: 0.5, delay: 3 },
-  //       { alpha: 0, duration: 0.5, delay: 3 }
-  //     );
-  //   }
+    const tl = gsap.timeline({ repeat: -1, yoyo: true });
+    const joynessText = document.querySelectorAll(".joyness");
 
-  //   requestAnimationFrame(animate);
-  // };
+    let start: number = Date.now();
+    let current = 0;
+    let delta = 0;
 
-  // requestAnimationFrame(animate);
-  twinkleText();
-</script>
+    gsap.fromTo(
+      ".text1",
+      { alpha: 0, duration: 3, delay: 0.8 },
+      { alpha: 1, duration: 3, delay: 0.8 }
+    );
+
+    gsap.fromTo(
+      ".text2",
+      { alpha: 0, duration: 3, delay: 1 },
+      { alpha: 1, duration: 3, delay: 1 }
+    );
+
+    const twinkleText = () => {
+      current = Date.now();
+      delta = Math.floor((current - start) / 1000);
+      const element: Element = joynessText[3];
+      const element2: Element | null = document.querySelector(".joyness2");
+      const tlTwinkle = gsap.timeline({ onComplete: twinkleText });
+
+      if (delta > 2) {
+        tlTwinkle.to(element, {
+          alpha: 1,
+          duration: 0.2,
+          ease: "power3.inOut",
+        });
+        tlTwinkle.to(element, {
+          alpha: 0,
+          duration: 0.2,
+          ease: "power3.inOut",
+        });
+
+        tlTwinkle.to(element2, {
+          alpha: 1,
+          duration: 0.2,
+          ease: "power3.inOut",
+        });
+        tlTwinkle.to(element2, {
+          alpha: 0.2,
+          duration: 0.2,
+          x: 100,
+          ease: "power3.inOut",
+        });
+      }
+    };
+
+    twinkleText();
+  </script>
+</Layout>
