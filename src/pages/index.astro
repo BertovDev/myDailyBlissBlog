@@ -109,8 +109,7 @@ import HeaderImage from "../components/HeaderImage.astro";
     const JoynessBottomElements: NodeListOf<Element> | null =
       document.querySelectorAll(".joyness2");
 
-    let JoynessElementInViewport1: HTMLElement | null = null;
-    let JoynessElementInViewport2: HTMLElement | null = null;
+    let JoynessElementInViewport: HTMLElement | null = null;
 
     let start: number = Date.now();
     let current = 0;
@@ -146,32 +145,28 @@ import HeaderImage from "../components/HeaderImage.astro";
 
     for (let i = JoynessTopElements.length - 1; i >= 0; i--) {
       if (isElementInViewport(JoynessTopElements[i])) {
-        JoynessElementInViewport1 = JoynessTopElements[i] as HTMLElement;
-        JoynessElementInViewport2 = JoynessBottomElements[i] as HTMLElement;
+        JoynessElementInViewport = JoynessBottomElements[i] as HTMLElement;
         break;
       }
     }
 
-    const twinkleText = (
-      element: HTMLElement | null,
-      element2: HTMLElement | null
-    ) => {
+    const twinkleText = (element: HTMLElement | null) => {
       current = Date.now();
       delta = Math.floor((current - start) / 1000);
 
       const tlTwinkle = gsap.timeline({
-        onComplete: () => twinkleText(element, element2),
+        onComplete: () => twinkleText(element),
       });
 
       if (delta > 2) {
         tlTwinkle.fromTo(
-          element2,
+          element,
           { alpha: 1, duration: 0.4, ease: "power3.inOut" },
           { alpha: 0.5, duration: 0.2, ease: "power3.inOut" }
         );
       }
     };
 
-    twinkleText(JoynessElementInViewport1, JoynessElementInViewport2);
+    twinkleText(JoynessElementInViewport);
   </script>
 </Layout>
