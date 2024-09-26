@@ -17,21 +17,36 @@ import HeaderImage from "../components/HeaderImage.astro";
       <div class="lg:hidden text text-6xl sm:text-8xl md:text-9xl">
         <div class="text-left break-words container">
           <p class="text text2 inline-block absolute text-primary-150">
-            Some of My Daily Joyness Some of My Daily Joyness Some of My Daily
-            Joyness Some of My Daily <span class="joyness2">Joyness</span>
-            Some of My Daily Joyness Some of My Daily Joyness Some of My Daily Joyness
-            Some of My Daily <span class="joyness2">Joyness</span>
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
+            <br />
           </p>
           <p class="text text1 inline-block relative left-3">
-            Some of My Daily <span class="joyness">Joyness</span>
-            Some of My Daily
-            <span class="joyness">Joyness</span> Some of My Daily <span
-              class="joyness">Joyness</span
-            > Some of My Daily <span class="joyness">Joyness</span>
-            Some of My Daily <span class="joyness">Joyness</span>
-            Some of My Daily <span class="joyness">Joyness</span>
-            Some of My Daily <span class="joyness">Joyness</span>
-            Some of My Daily <span class="joyness">Joyness</span>
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
+            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
+            <br />
           </p>
         </div>
       </div>
@@ -89,8 +104,13 @@ import HeaderImage from "../components/HeaderImage.astro";
   <script>
     import gsap from "gsap";
 
-    const tl = gsap.timeline({ repeat: -1, yoyo: true });
-    const joynessText = document.querySelectorAll(".joyness");
+    const JoynessTopElements: NodeListOf<Element> | null =
+      document.querySelectorAll(".joyness");
+    const JoynessBottomElements: NodeListOf<Element> | null =
+      document.querySelectorAll(".joyness2");
+
+    let JoynessElementInViewport1: HTMLElement | null = null;
+    let JoynessElementInViewport2: HTMLElement | null = null;
 
     let start: number = Date.now();
     let current = 0;
@@ -108,39 +128,50 @@ import HeaderImage from "../components/HeaderImage.astro";
       { alpha: 1, duration: 3, delay: 1 }
     );
 
-    const twinkleText = () => {
+    function isElementInViewport(el: Element) {
+      var rect = el.getBoundingClientRect();
+
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <=
+          (window.innerHeight ||
+            document.documentElement
+              .clientHeight) /* or $(window).height() */ &&
+        rect.right <=
+          (window.innerWidth ||
+            document.documentElement.clientWidth) /* or $(window).width() */
+      );
+    }
+
+    for (let i = JoynessTopElements.length - 1; i >= 0; i--) {
+      if (isElementInViewport(JoynessTopElements[i])) {
+        JoynessElementInViewport1 = JoynessTopElements[i] as HTMLElement;
+        JoynessElementInViewport2 = JoynessBottomElements[i] as HTMLElement;
+        break;
+      }
+    }
+
+    const twinkleText = (
+      element: HTMLElement | null,
+      element2: HTMLElement | null
+    ) => {
       current = Date.now();
       delta = Math.floor((current - start) / 1000);
-      const element: Element = joynessText[3];
-      const element2: Element | null = document.querySelector(".joyness2");
-      const tlTwinkle = gsap.timeline({ onComplete: twinkleText });
+
+      const tlTwinkle = gsap.timeline({
+        onComplete: () => twinkleText(element, element2),
+      });
 
       if (delta > 2) {
-        tlTwinkle.to(element, {
-          alpha: 1,
-          duration: 0.2,
-          ease: "power3.inOut",
-        });
-        tlTwinkle.to(element, {
-          alpha: 0,
-          duration: 0.2,
-          ease: "power3.inOut",
-        });
-
-        tlTwinkle.to(element2, {
-          alpha: 1,
-          duration: 0.2,
-          ease: "power3.inOut",
-        });
-        tlTwinkle.to(element2, {
-          alpha: 0.2,
-          duration: 0.2,
-          x: 100,
-          ease: "power3.inOut",
-        });
+        tlTwinkle.fromTo(
+          element2,
+          { alpha: 1, duration: 0.4, ease: "power3.inOut" },
+          { alpha: 0.5, duration: 0.2, ease: "power3.inOut" }
+        );
       }
     };
 
-    twinkleText();
+    twinkleText(JoynessElementInViewport1, JoynessElementInViewport2);
   </script>
 </Layout>
