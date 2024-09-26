@@ -7,24 +7,140 @@ import HeaderImage from "../components/HeaderImage.astro";
 
 <Layout title="Welcome to Astro.">
   <main
-    class="bg-black text-white min-h-screen flex flex-col lg:flex-row p-4 lg:p-0"
+    class="text-white min-h-screen h-screen flex flex-row items-start lg:flex-col lg:items-start lg:justify-around"
   >
     <HeaderImage />
-    <!-- <p
-      class="fixed hidden lg:inline text-xl w-full lg:top-0 lg:left-0 z-20 font-bold py-1 writing-vertical-rl transform rotate-180"
-    >
-      ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    </p> -->
+
     <div
-      class="pt-20 lg:pt-32 lg:ml-[16.666667%] min-h-screen p-4 md:p-8 overflow-y-auto lg:w-3/4"
+      class="flex flex-col h-full parent-container uppercase ml-[33%] lg:ml-[11.6%] w-full font-darkerGrote font-bold mt-10"
     >
-      <Header />
-      <div
-        class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
-      >
-        <BlogList titleName={"Posts"} />
-        <BlogList titleName={"Content"} />
+      <div class="lg:hidden text text-6xl sm:text-8xl md:text-9xl">
+        <div class="text-left break-words container">
+          <p class="text text2 inline-block absolute text-primary-150">
+            Some of My Daily Joyness Some of My Daily Joyness Some of My Daily
+            Joyness Some of My Daily <span class="joyness2">Joyness</span>
+            Some of My Daily Joyness Some of My Daily Joyness Some of My Daily Joyness
+            Some of My Daily <span class="joyness2">Joyness</span>
+          </p>
+          <p class="text text1 inline-block relative left-3">
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily
+            <span class="joyness">Joyness</span> Some of My Daily <span
+              class="joyness">Joyness</span
+            > Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+            Some of My Daily <span class="joyness">Joyness</span>
+          </p>
+        </div>
       </div>
+
+      <!-- <div
+      class="total-height pt-20 lg:pt-10 2xl:pt-32 lg:ml-[16.666667%] lg:p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
+    >
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="text-9xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[12rem] font-darkerGrote font-bold mb-4"
+        >
+          <span class="block relative">
+            <span class="absolute left-0 text-primary-150 underline"
+              >A COMPILATION OF</span
+            >
+            <span class="relative left-2 z-10 underline">A COMPILATION OF</span>
+          </span>
+          <span class="block relative mt-8">
+            <span class="absolute left-0 text-primary-150 underline"
+              >MY DAILY</span
+            >
+            <span class="relative z-10 left-2 underline">MY DAILY</span>
+          </span>
+          <span class="block relative mt-8">
+            <span class="absolute z-10 left-0 text-primary-150 underline"
+              >JOYNESS ***</span
+            >
+            <span class="relative z-10 left-2"
+              >JOYNESS <span class="text-white underline">***</span></span
+            >
+            <div class="w-full top-24 z-0 h-full bg-primary-150 absolute block">
+            </div>
+            <div
+              class="w-3/4 top-25 left-20 z-0 h-full bg-primary absolute block"
+            >
+            </div>
+            <div
+              class="w-1/2 top-20 left-5 z-0 h-full bg-primary-50 absolute block"
+            >
+            </div>
+          </span>
+        </div>
+      </div>
+    </div> -->
+      <Header />
     </div>
   </main>
+
+  <style>
+    body {
+      overflow: hidden;
+    }
+  </style>
+
+  <script>
+    import gsap from "gsap";
+
+    const tl = gsap.timeline({ repeat: -1, yoyo: true });
+    const joynessText = document.querySelectorAll(".joyness");
+
+    let start: number = Date.now();
+    let current = 0;
+    let delta = 0;
+
+    gsap.fromTo(
+      ".text1",
+      { alpha: 0, duration: 3, delay: 0.8 },
+      { alpha: 1, duration: 3, delay: 0.8 }
+    );
+
+    gsap.fromTo(
+      ".text2",
+      { alpha: 0, duration: 3, delay: 1 },
+      { alpha: 1, duration: 3, delay: 1 }
+    );
+
+    const twinkleText = () => {
+      current = Date.now();
+      delta = Math.floor((current - start) / 1000);
+      const element: Element = joynessText[3];
+      const element2: Element | null = document.querySelector(".joyness2");
+      const tlTwinkle = gsap.timeline({ onComplete: twinkleText });
+
+      if (delta > 2) {
+        tlTwinkle.to(element, {
+          alpha: 1,
+          duration: 0.2,
+          ease: "power3.inOut",
+        });
+        tlTwinkle.to(element, {
+          alpha: 0,
+          duration: 0.2,
+          ease: "power3.inOut",
+        });
+
+        tlTwinkle.to(element2, {
+          alpha: 1,
+          duration: 0.2,
+          ease: "power3.inOut",
+        });
+        tlTwinkle.to(element2, {
+          alpha: 0.2,
+          duration: 0.2,
+          x: 100,
+          ease: "power3.inOut",
+        });
+      }
+    };
+
+    twinkleText();
+  </script>
 </Layout>
