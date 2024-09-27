@@ -12,12 +12,51 @@ import HeaderImage from "../components/HeaderImage.astro";
     <HeaderImage />
 
     <div
-      class="flex flex-col h-full parent-container uppercase ml-[33%] lg:ml-[11.6%] w-full font-darkerGrote font-bold mt-10"
+      class="flex flex-col h-full uppercase ml-[33%] lg:ml-[12%] w-full font-darkerGrote font-bold mt-10"
     >
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="hidden lg:block text-9xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[12rem] mb-4"
+        >
+          <span class="block relative">
+            <span class="absolute left-0 text-primary-150 underline"
+              >A COMPILATION OF</span
+            >
+            <span class="relative left-4 z-10 underline">A COMPILATION OF</span>
+          </span>
+          <span class="block relative mt-8">
+            <span class="absolute left-0 text-primary-150 underline"
+              >MY DAILY</span
+            >
+            <span class="relative z-10 left-4 underline">MY DAILY</span>
+          </span>
+          <span class="block relative mt-8">
+            <span class="absolute z-10 left-0 text-primary-150 underline"
+              >JOYNESS ***</span
+            >
+            <span class="relative z-10 left-4"
+              >JOYNESS <span class="text-white underline">***</span></span
+            >
+            <div
+              class="square1 w-full top-24 z-0 h-full bg-primary-150 absolute block"
+            >
+            </div>
+            <div
+              class="square2 w-3/4 top-25 left-20 z-0 h-full bg-primary absolute block"
+            >
+            </div>
+            <div
+              class="square3 w-1/2 top-20 left-5 z-0 h-full bg-primary-50 absolute block"
+            >
+            </div>
+          </span>
+        </div>
+      </div>
+
       <div
-        class="lg:hidden text text-6xl sm:text-8xl md:text-9xl pr-10 md:pr-20"
+        class="text text-6xl sm:text-8xl md:text-9xl lg:text-7xl pr-10 lg:hidden"
       >
-        <div class="text-left break-words container">
+        <div class="text-left break-words">
           <p class="text text2 inline-block absolute text-primary-150">
             SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
             <br />
@@ -53,46 +92,6 @@ import HeaderImage from "../components/HeaderImage.astro";
         </div>
       </div>
 
-      <!-- <div
-      class="total-height pt-20 lg:pt-10 2xl:pt-32 lg:ml-[16.666667%] lg:p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
-    >
-      <div class="flex flex-col justify-between h-full">
-        <div
-          class="text-9xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[12rem] font-darkerGrote font-bold mb-4"
-        >
-          <span class="block relative">
-            <span class="absolute left-0 text-primary-150 underline"
-              >A COMPILATION OF</span
-            >
-            <span class="relative left-2 z-10 underline">A COMPILATION OF</span>
-          </span>
-          <span class="block relative mt-8">
-            <span class="absolute left-0 text-primary-150 underline"
-              >MY DAILY</span
-            >
-            <span class="relative z-10 left-2 underline">MY DAILY</span>
-          </span>
-          <span class="block relative mt-8">
-            <span class="absolute z-10 left-0 text-primary-150 underline"
-              >JOYNESS ***</span
-            >
-            <span class="relative z-10 left-2"
-              >JOYNESS <span class="text-white underline">***</span></span
-            >
-            <div class="w-full top-24 z-0 h-full bg-primary-150 absolute block">
-            </div>
-            <div
-              class="w-3/4 top-25 left-20 z-0 h-full bg-primary absolute block"
-            >
-            </div>
-            <div
-              class="w-1/2 top-20 left-5 z-0 h-full bg-primary-50 absolute block"
-            >
-            </div>
-          </span>
-        </div>
-      </div>
-    </div> -->
       <Header />
     </div>
   </main>
@@ -112,6 +111,7 @@ import HeaderImage from "../components/HeaderImage.astro";
       document.querySelectorAll(".joyness2");
 
     let JoynessElementInViewport: HTMLElement | null = null;
+    const tl = gsap.timeline();
 
     let start: number = Date.now();
     let current = 0;
@@ -128,6 +128,22 @@ import HeaderImage from "../components/HeaderImage.astro";
       { alpha: 0, duration: 3, delay: 1 },
       { alpha: 1, duration: 3, delay: 1 }
     );
+
+    tl.fromTo(
+      ".square1",
+      { alpha: 0, duration: 0.5 },
+      { alpha: 1, duration: 0.5 }
+    )
+      .fromTo(
+        ".square2",
+        { alpha: 0, duration: 0.7 },
+        { alpha: 1, duration: 0.7 }
+      )
+      .fromTo(
+        ".square3",
+        { alpha: 0, duration: 0.7 },
+        { alpha: 1, duration: 0.7 }
+      );
 
     function isElementInViewport(el: Element) {
       var rect = el.getBoundingClientRect();
