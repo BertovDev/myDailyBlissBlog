@@ -102,6 +102,7 @@ import HeaderImage from "../components/HeaderImage.astro";
 
   <script>
     import gsap from "gsap";
+    import isElementInViewport from "../utils/Utils";
 
     const JoynessTopElements: NodeListOf<Element> | null =
       document.querySelectorAll(".joyness");
@@ -142,22 +143,6 @@ import HeaderImage from "../components/HeaderImage.astro";
         { alpha: 0, duration: 0.7 },
         { alpha: 1, duration: 0.7 }
       );
-
-    function isElementInViewport(el: Element) {
-      var rect = el.getBoundingClientRect();
-
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight ||
-            document.documentElement
-              .clientHeight) /* or $(window).height() */ &&
-        rect.right <=
-          (window.innerWidth ||
-            document.documentElement.clientWidth) /* or $(window).width() */
-      );
-    }
 
     for (let i = JoynessTopElements.length - 1; i >= 0; i--) {
       if (isElementInViewport(JoynessTopElements[i])) {
