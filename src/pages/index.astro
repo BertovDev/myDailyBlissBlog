@@ -11,10 +11,8 @@ import HeaderImage from "../components/HeaderImage.astro";
   >
     <HeaderImage />
 
-    <div
-      class="flex flex-col h-full uppercase ml-[33%] lg:ml-[12%] w-full font-darkerGrote font-bold mt-10"
-    >
-      <div class="flex flex-col justify-between h-full">
+    <div class="flex flex-col h-full ml-[33%] lg:ml-[12%] w-full mt-10">
+      <div class="text-container flex flex-col justify-between h-full">
         <div
           class="hidden lg:block text-9xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[12rem] mb-4"
         >
@@ -53,7 +51,9 @@ import HeaderImage from "../components/HeaderImage.astro";
         </div>
       </div>
 
-      <div class="text text-6xl sm:text-8xl md:text-9xl lg:text-7xl lg:hidden">
+      <div
+        class="text-container text-6xl sm:text-8xl md:text-9xl lg:text-7xl lg:hidden"
+      >
         <div class="text-left break-words">
           <p class="text text2 inline-block absolute text-primary-150">
             SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
@@ -97,6 +97,10 @@ import HeaderImage from "../components/HeaderImage.astro";
   <style>
     body {
       overflow: hidden;
+    }
+
+    .text-container {
+      @apply font-darkerGrote font-bold uppercase;
     }
   </style>
 
