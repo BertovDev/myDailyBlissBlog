@@ -1,0 +1,134 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import HeaderImage from "../../components/HeaderImage.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main
+    class="text-white min-h-screen h-screen flex flex-row items-start lg:flex-col lg:items-start lg:justify-around"
+  >
+    <HeaderImage />
+    <div
+      class="flex flex-col h-full justify-center items-center ml-[33%] lg:ml-[12%] w-full"
+    >
+      <div class="text-5xl font-darkerGrote font-bold flex flex-col gap-7">
+        <h1 class="benji-click cursor-pointer">CLICK ME!</h1>
+        <h1>CLICK ME!</h1>
+        <!-- <h1>CLICK ME!</h1>
+        <h1>CLICK ME!</h1>
+        <h1>CLICK ME!</h1> -->
+      </div>
+      <img
+        class="benji hidden opacity-0 scale-50 absolute top-0 left-0 right-0 bottom-0 m-auto"
+        src="/benji.png"
+        alt=""
+      />
+      <img
+        class="gun hidden absolute top-0 left-0 right-0 bottom-0 m-auto"
+        src="/gun.png"
+        alt=""
+      />
+    </div>
+    <div class="container absolute hidden opacity-0 bg-black h-full w-full">
+      <div class="flex flex-col justify-center items-center h-1/3 gap-y-4">
+        <h1 class="text-5xl text-center">You invoked BENJI</h1>
+        <h2 class="quit-button text-4xl cursor-pointer text-primary-100">
+          Pet him!
+        </h2>
+      </div>
+      <div id="drag" class="">
+        <img
+          class="benji scale-75 absolute top-0 left-0 right-0 bottom-0 m-auto"
+          src="/benji.png"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <Header />
+  </main>
+</Layout>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+
+  #drag {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 100px;
+    width: 100px;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { Draggable } from "gsap/Draggable";
+
+  gsap.registerPlugin(Draggable);
+
+  const benjiItem: Element | null = document.querySelector(".benji-click");
+  const quitBUtton: Element | null = document.querySelector(".quit-button");
+
+  const benji = document.querySelector(".benji");
+  const getter = gsap.getProperty(benji);
+  const tl = gsap.timeline();
+
+  Draggable.create("#drag", {
+    type: "x,y",
+    bounds: ".container",
+    onDrag: (e) => {
+      gsap.to(".benji", {
+        scale: "+=0.1",
+        onUpdate: () => {
+          if ((getter("scale") as number) > 1.5) {
+            const randomX = Math.floor(Math.random() * 1000) + 500;
+            const randomY = Math.floor(Math.random() * 1000) + 500;
+
+            console.log(randomX, randomY);
+            tl.to(".benji", { x: randomX, y: randomY, duration: 1 })
+              .to(".container", {
+                opacity: 0,
+                duration: 1,
+                ease: "power3.inOut",
+                display: "none",
+              })
+              .to(".benji", { scale: 0.75, duration: 1, opacity: 0 });
+          }
+        },
+      });
+    },
+  });
+
+  quitBUtton?.addEventListener("click", () => {
+    tl.to(".benji", {
+      scale: 0.75,
+      duration: 1,
+      opacity: 0,
+    }).to(".container", {
+      opacity: 0,
+      duration: 1,
+      ease: "power3.inOut",
+      display: "none",
+    });
+  });
+
+  benjiItem?.addEventListener("click", () => {
+    tl.to(".container", {
+      opacity: 1,
+      duration: 2,
+      ease: "power3.inOut",
+      display: "block",
+    }).to(".benji", {
+      scale: 0.75,
+      duration: 0.6,
+      opacity: 1,
+    });
+  });
+</script>
