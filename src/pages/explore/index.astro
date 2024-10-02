@@ -88,10 +88,6 @@ import HeaderImage from "../../components/HeaderImage.astro";
         scale: "+=0.1",
         onUpdate: () => {
           if ((getter("scale") as number) > 3) {
-            const randomX = Math.floor(Math.random() * 1000) + 500;
-            const randomY = Math.floor(Math.random() * 1000) + 500;
-
-            console.log(randomX, randomY);
             tl.to(".benji", {
               scale: 0.75,
               duration: 1,

@@ -92,101 +92,162 @@ import HeaderImage from "../components/HeaderImage.astro";
 
       <Header />
     </div>
+    <div class="h-full w-full hidden absolute z-30" id="gradient">
+      <img src="/thunder.svg" class="fill-white thunder" alt="" />
+      <img src="/thunder.svg" class="fill-white thunder2" alt="" />
+      <img
+        id="drag"
+        src="/benji.png"
+        alt=""
+        class="benji-img absolute left-0 right-0 top-0 bottom-0 m-auto scale-50 opacity-0"
+      />
+      <div
+        class="benji-text opacity-0 absolute left-0 right-0 top-20 text-4xl text-center"
+      >
+        <h1 class="mb-2">You invoked BENJI</h1>
+        <h2>Pet him! or you DIE!</h2>
+      </div>
+    </div>
   </main>
-
-  <style>
-    body {
-      overflow: hidden;
-    }
-
-    .text-container {
-      @apply font-darkerGrote font-bold uppercase;
-    }
-  </style>
-
-  <script>
-    import gsap from "gsap";
-
-    const JoynessTopElements: NodeListOf<Element> | null =
-      document.querySelectorAll(".joyness");
-    const JoynessBottomElements: NodeListOf<Element> | null =
-      document.querySelectorAll(".joyness2");
-
-    let JoynessElementInViewport: HTMLElement | null = null;
-    const tl = gsap.timeline();
-
-    let start: number = Date.now();
-    let current = 0;
-    let delta = 0;
-
-    gsap.fromTo(
-      ".text1",
-      { alpha: 0, duration: 3, delay: 0.8 },
-      { alpha: 1, duration: 3, delay: 0.8 }
-    );
-
-    gsap.fromTo(
-      ".text2",
-      { alpha: 0, duration: 3, delay: 1 },
-      { alpha: 1, duration: 3, delay: 1 }
-    );
-
-    tl.fromTo(
-      ".square1",
-      { alpha: 0, duration: 0.5 },
-      { alpha: 1, duration: 0.5 }
-    )
-      .fromTo(
-        ".square2",
-        { alpha: 0, duration: 0.7 },
-        { alpha: 1, duration: 0.7 }
-      )
-      .fromTo(
-        ".square3",
-        { alpha: 0, duration: 0.7 },
-        { alpha: 1, duration: 0.7 }
-      );
-
-    function isElementInViewport(el: Element) {
-      var rect = el.getBoundingClientRect();
-
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight ||
-            document.documentElement
-              .clientHeight) /* or $(window).height() */ &&
-        rect.right <=
-          (window.innerWidth ||
-            document.documentElement.clientWidth) /* or $(window).width() */
-      );
-    }
-
-    for (let i = JoynessTopElements.length - 1; i >= 0; i--) {
-      if (isElementInViewport(JoynessTopElements[i])) {
-        JoynessElementInViewport = JoynessBottomElements[i] as HTMLElement;
-        break;
-      }
-    }
-
-    const twinkleText = (element: HTMLElement | null) => {
-      current = Date.now();
-      delta = Math.floor((current - start) / 1000);
-
-      const tlTwinkle = gsap.timeline({
-        onComplete: () => twinkleText(element),
-      });
-
-      if (delta > 2) {
-        tlTwinkle.fromTo(
-          element,
-          { alpha: 1, duration: 0.4, ease: "power3.inOut" },
-          { alpha: 0.5, duration: 0.2, ease: "power3.inOut" }
-        );
-      }
-    };
-
-    twinkleText(JoynessElementInViewport);
-  </script>
 </Layout>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+
+  .text-container {
+    @apply font-darkerGrote font-bold uppercase;
+  }
+
+  .thunder {
+    @apply opacity-0 top-0 left-40 absolute rotate-90;
+  }
+
+  .thunder2 {
+    @apply absolute right-40 top-32 h-1/2 w-full opacity-0  rotate-45;
+  }
+</style>
+
+<script>
+  import isElementInViewport from "../utils/uitls";
+  import gsap from "gsap";
+  import { Draggable } from "gsap/Draggable";
+
+  gsap.registerPlugin(Draggable);
+
+  const benji_img = document.querySelector(".benji-img");
+
+  const getter = gsap.getProperty(benji_img);
+
+  const JoynessTopElements: NodeListOf<Element> | null =
+    document.querySelectorAll(".joyness");
+  const JoynessBottomElements: NodeListOf<Element> | null =
+    document.querySelectorAll(".joyness2");
+
+  let JoynessElementInViewport: HTMLElement | null = null;
+  const tl = gsap.timeline();
+
+  let start: number = Date.now();
+  let current = 0;
+  let delta = 0;
+
+  gsap.fromTo(
+    ".text1",
+    { alpha: 0, duration: 3, delay: 0.8 },
+    { alpha: 1, duration: 3, delay: 0.8 }
+  );
+
+  gsap.fromTo(
+    ".text2",
+    { alpha: 0, duration: 3, delay: 1 },
+    { alpha: 1, duration: 3, delay: 1 }
+  );
+
+  tl.fromTo(
+    ".square1",
+    { alpha: 0, duration: 0.5 },
+    { alpha: 1, duration: 0.5 }
+  )
+    .fromTo(
+      ".square2",
+      { alpha: 0, duration: 0.7 },
+      { alpha: 1, duration: 0.7 }
+    )
+    .fromTo(
+      ".square3",
+      { alpha: 0, duration: 0.7 },
+      { alpha: 1, duration: 0.7 }
+    );
+
+  for (let i = JoynessTopElements.length - 1; i >= 0; i--) {
+    if (isElementInViewport(JoynessTopElements[i])) {
+      JoynessElementInViewport = JoynessBottomElements[i] as HTMLElement;
+      break;
+    }
+  }
+
+  const twinkleText = (element: HTMLElement | null) => {
+    current = Date.now();
+    delta = Math.floor((current - start) / 1000);
+
+    const tlTwinkle = gsap.timeline({
+      onComplete: () => twinkleText(element),
+    });
+
+    if (delta > 2) {
+      tlTwinkle.fromTo(
+        element,
+        { alpha: 1, duration: 0.4, ease: "power3.inOut" },
+        { alpha: 0.5, duration: 0.2, ease: "power3.inOut" }
+      );
+    }
+  };
+
+  Draggable.create("#drag", {
+    type: "x,y",
+    bounds: "#gradient",
+    onDrag: (e) => {
+      gsap.to(".benji-img", {
+        scale: "+=0.1",
+        onUpdate: () => {
+          if ((getter("scale") as number) > 2) {
+            tl.to(".benji-img", {
+              scale: 0.5,
+              duration: 1,
+              opacity: 0,
+            }).to("#gradient", {
+              opacity: 0,
+              duration: 1,
+              ease: "power3.inOut",
+              display: "none",
+            });
+          }
+        },
+      });
+    },
+  });
+
+  JoynessElementInViewport?.addEventListener("click", () => {
+    tl.to("#gradient", {
+      backgroundImage:
+        "linear-gradient(to bottom, black 0%, black 80%, #141414 100%)",
+      duration: 1.5,
+      display: "block",
+    })
+      .to([".thunder", ".thunder2"], {
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.8,
+      })
+      .to([".thunder", ".thunder2"], {
+        opacity: 0,
+        duration: 0.3,
+        stagger: 0.1,
+      })
+      .to(".benji-img", { opacity: 1, duration: 0.6 })
+      .to(".benji-text", { opacity: 1, duration: 0.5 });
+  });
+
+  twinkleText(JoynessElementInViewport);
+</script>
