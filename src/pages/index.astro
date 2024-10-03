@@ -92,13 +92,12 @@ import HeaderImage from "../components/HeaderImage.astro";
 
       <Header />
     </div>
-    <div class="h-full w-full absolute hidden z-30" id="gradient">
+
+    <div class="hidden h-full w-full fixed z-30" id="gradient">
       <img src="/thunder.svg" class="fill-white thunder" alt="" />
       <img src="/thunder.svg" class="fill-white thunder2" alt="" />
-      <div
-        id="drag-container"
-        class="h-3/4 w-3/4 left-0 right-0 top-0 bottom-0 m-auto relative"
-      >
+
+      <div id="drag-container" class="w-3/4 h-3/4 flex flex-col m-auto">
         <img
           id="drag"
           src="/benji.png"
