@@ -92,19 +92,26 @@ import HeaderImage from "../components/HeaderImage.astro";
 
       <Header />
     </div>
-    <div class="h-full w-full hidden absolute z-30" id="gradient">
+    <div class="h-full w-full absolute hidden z-30" id="gradient">
       <img src="/thunder.svg" class="fill-white thunder" alt="" />
       <img src="/thunder.svg" class="fill-white thunder2" alt="" />
-      <img
-        id="drag"
-        src="/benji.png"
-        alt=""
-        class="benji-img absolute left-0 right-0 top-0 bottom-0 m-auto scale-50 opacity-0"
-      />
+      <div
+        id="drag-container"
+        class="h-3/4 w-3/4 left-0 right-0 top-0 bottom-0 m-auto relative"
+      >
+        <img
+          id="drag"
+          src="/benji.png"
+          alt=""
+          class="benji-img absolute left-0 right-0 top-0 bottom-0 m-auto scale-50 opacity-0"
+        />
+      </div>
       <div
         class="benji-text opacity-0 absolute left-0 right-0 top-20 text-4xl text-center"
       >
-        <h1 class="mb-2">You invoked BENJI</h1>
+        <h1 class="mb-2">
+          You invoked <span class="text-primary">BENJI</span>
+        </h1>
         <h2>Pet him! or you DIE!</h2>
       </div>
     </div>
@@ -151,6 +158,9 @@ import HeaderImage from "../components/HeaderImage.astro";
   let start: number = Date.now();
   let current = 0;
   let delta = 0;
+
+  const headerImage: HTMLImageElement = document.querySelectorAll("img")[0];
+  const header: HTMLElement | null = document.querySelector("header");
 
   gsap.fromTo(
     ".text1",
@@ -206,22 +216,34 @@ import HeaderImage from "../components/HeaderImage.astro";
 
   Draggable.create("#drag", {
     type: "x,y",
-    bounds: "#gradient",
+    bounds: "#drag-container",
     onDrag: (e) => {
       gsap.to(".benji-img", {
         scale: "+=0.1",
         onUpdate: () => {
-          if ((getter("scale") as number) > 2) {
+          if ((getter("scale") as number) > 1) {
             tl.to(".benji-img", {
               scale: 0.5,
               duration: 1,
               opacity: 0,
-            }).to("#gradient", {
-              opacity: 0,
-              duration: 1,
-              ease: "power3.inOut",
-              display: "none",
-            });
+            })
+              .to("#gradient", {
+                opacity: 0,
+                duration: 1,
+                ease: "power3.inOut",
+                display: "none",
+              })
+              .to(headerImage, {
+                display: "block",
+                opacity: 1,
+                x: 0,
+                duration: 0.5,
+              })
+              .to(header, { y: 0, duration: 0.5, display: "block" })
+              .to(".text-container", {
+                display: "block",
+              })
+              .to(".text-container", { opacity: 1, duration: 0.5 });
           }
         },
       });
@@ -229,12 +251,20 @@ import HeaderImage from "../components/HeaderImage.astro";
   });
 
   JoynessElementInViewport?.addEventListener("click", () => {
-    tl.to("#gradient", {
-      backgroundImage:
-        "linear-gradient(to bottom, black 0%, black 80%, #141414 100%)",
-      duration: 1.5,
-      display: "block",
-    })
+    tl.to(headerImage, { opacity: 0, x: -100, duration: 0.5, display: "none" })
+      .to(header, { y: "+=100", duration: 0.5, display: "none" })
+      .to(".text-container", {
+        opacity: 0,
+        duration: 0.5,
+        display: "none",
+      })
+      .to("#gradient", {
+        backgroundImage:
+          "linear-gradient(to bottom, black 0%, black 60%, #212121 100%)",
+        duration: 1.5,
+        display: "flex",
+        delay: 0.5,
+      })
       .to([".thunder", ".thunder2"], {
         opacity: 1,
         duration: 0.3,
