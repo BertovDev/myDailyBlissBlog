@@ -11,48 +11,36 @@ import HeaderImage from "../components/HeaderImage.astro";
   >
     <HeaderImage />
 
-    <div class="flex flex-col h-full ml-[33%] lg:ml-[12%] w-full mt-10">
-      <div class="text-container flex flex-col justify-between h-full">
+    <div
+      class="flex flex-col h-full ml-[33%] lg:ml-[17%] xl:ml-[16%] 2xl:ml-[12%] w-full mt-10"
+    >
+      <div class="text-container flex flex-col h-full">
         <div
-          class="hidden lg:block text-9xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[12rem] mb-4"
+          class="hidden lg:block text-6xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[10.5rem] mb-4"
         >
           <span class="block relative">
-            <span class="absolute left-0 text-primary-150 underline"
-              >A COMPILATION OF</span
-            >
-            <span class="relative left-4 z-10 underline">A COMPILATION OF</span>
+            <span class="absolute left-0 text-primary-150">A COMPILATION</span>
+            <span class="relative left-7 z-10">A COMPILATION</span>
           </span>
-          <span class="block relative mt-8">
-            <span class="absolute left-0 text-primary-150 underline"
-              >MY DAILY</span
+          <span class="block relative mt-2">
+            <span class="absolute left-0 text-primary-150"
+              >OF MY DAILY JOYNESS</span
             >
-            <span class="relative z-10 left-4 underline">MY DAILY</span>
-          </span>
-          <span class="block relative mt-8">
-            <span class="absolute z-10 left-0 text-primary-150 underline"
-              >JOYNESS ***</span
-            >
-            <span class="relative z-10 left-4"
-              >JOYNESS <span class="text-white underline">***</span></span
-            >
-            <div
-              class="square1 w-full top-24 z-0 h-full bg-primary-150 absolute block"
-            >
-            </div>
-            <div
-              class="square2 w-3/4 top-25 left-20 z-0 h-full bg-primary absolute block"
-            >
-            </div>
-            <div
-              class="square3 w-1/2 top-20 left-5 z-0 h-full bg-primary-50 absolute block"
-            >
-            </div>
+            <span class="relative z-10 left-7">OF MY DAILY JOYNESS</span>
           </span>
         </div>
+        <div
+          class="xl:w-[80%] 2xl:w-[86%] h-1 relative opacity-70 border-t-2 hidden lg:block"
+        >
+        </div>
       </div>
-
       <div
-        class="text-container text-6xl sm:text-8xl md:text-9xl lg:text-7xl lg:hidden"
+        class="text-container
+              text-6xl
+              sm:text-8xl
+              md:text-9xl
+              lg:text-7xl
+              lg:hidden"
       >
         <div class="text-left break-words">
           <p class="text text2 inline-block absolute text-primary-150">
@@ -123,7 +111,7 @@ import HeaderImage from "../components/HeaderImage.astro";
   }
 
   .text-container {
-    @apply font-darkerGrote font-bold uppercase;
+    @apply font-roboto font-extrabold uppercase;
   }
 
   .thunder {
@@ -257,7 +245,12 @@ import HeaderImage from "../components/HeaderImage.astro";
   });
 
   JoynessElementInViewport?.addEventListener("click", () => {
-    tl.to(headerImage, { opacity: 0, x: -100, duration: 0.5, display: "none" })
+    tl.to(headerImage, {
+      opacity: 0,
+      x: -100,
+      duration: 0.5,
+      display: "none",
+    })
       .to(header, { y: "+=100", duration: 0.5, display: "none" })
       .to(".text-container", {
         opacity: 0,
