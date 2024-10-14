@@ -1,0 +1,25 @@
+---
+import BlogList from "../BlogList.astro";
+---
+
+<div class="hidden lg:flex flex-col h-full">
+  <div
+    class="hidden lg:block text-6xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[10.5rem] mb-4 font-roboto font-extrabold uppercase"
+  >
+    <span class="block relative">
+      <span class="absolute left-0 text-primary-150">A COMPILATION</span>
+      <span class="relative left-7 z-10">A COMPILATION</span>
+    </span>
+    <span class="block relative mt-2">
+      <span class="absolute left-0 text-primary-150">OF MY DAILY JOYNESS</span>
+      <span class="relative z-10 left-7">OF MY DAILY JOYNESS</span>
+    </span>
+  </div>
+  <div
+    class="xl:w-[80%] 2xl:w-[86%] h-1 relative opacity-50 border-t-2 hidden lg:block"
+  >
+  </div>
+  <BlogList />
+</div>
+
+<style></style>

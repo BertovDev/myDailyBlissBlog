@@ -2,28 +2,19 @@
 import { getCollection } from "astro:content";
 import { type CollectionEntry } from "astro:content";
 import BlogItem from "./BlogItem.astro";
+import FormatedDate from "./FormatedDate.astro";
 
-const posts = await getCollection("blog");
+let posts = await getCollection("blog");
 
 type BlogCollectionEntry = CollectionEntry<"blog">;
 
 const { titleName } = Astro.props;
 ---
 
-<ul role="list" class="lg:pr-10 lg:w-full">
-  <h1
-    class="text-4xl inline-block text-primary font-black lg:text-6xl lg:mt-10 text-bold"
-  >
-    {titleName}
-  </h1>
-  <hr class="mt-2" />
+<div class="grid grid-cols-2 w-[90%] gap-x-10 ml-1 mt-10 overflow-auto">
   {
-    posts.map((post: BlogCollectionEntry) => (
-      <BlogItem
-        title={post.data.title}
-        slug={post.slug}
-        pubDate={post.data.pubDate}
-      />
-    ))
+    posts.map((el) => {
+      return <BlogItem slug={el.slug} {...el.data} />;
+    })
   }
-</ul>
+</div>

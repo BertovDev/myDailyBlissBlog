@@ -3,10 +3,9 @@ import { SITE_TITLE } from "../../consts";
 ---
 
 <header
-  class="fixed px-5 bottom-0 h-16 md:h-16 z-20 left-0 right-0 lg:ml-[12%] w-5/4 lg:w-[86%] bg-black pt-2 md:pt-5 lg:mb-0 font-darkerGrote font-bold"
+  class="fixed px-5 bottom-0 h-16 md:h-24 z-20 left-0 right-0 lg:ml-[12%] w-5/4 lg:w-[86%] bg-black pt-2 md:pt-5 lg:mb-0 font-darkerGrote font-bold"
 >
-  <div class="border-t-2 w-full opacity-70 hidden lg:block"></div>
-  <div class="lg:hidden w-full lg:w-9/12 py-2 flex flex-row lg:flex-col">
+  <div class="lg:hidden w-full lg:w-9/12 py-2 flex flex-row">
     <div class="flex flex-col w-full md:flex-row justify-between pb-2">
       <ul class="flex flex-row gap-3 justify-center">
         <h2 class="text-xl lg:text-4xl hover:text-primary">
@@ -24,4 +23,64 @@ import { SITE_TITLE } from "../../consts";
       </h2>
     </div>
   </div>
+  <div class="border-t-2 w-full opacity-50 hidden lg:block">
+    <div class="not-a-footer-wrapper mt-5 text-xl font-roboto w-full">
+      <div class="not-a-footer-parent">
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+        <span class="not-a-footer-element">DAILY REMINDER, BE NICE.</span>
+      </div>
+    </div>
+  </div>
 </header>
+
+<style>
+  .not-a-footer-wrapper {
+    /* position: absolute; */
+    /* width: 1630px; */
+    /* left: 12%; */
+    height: 6rem;
+    overflow: hidden;
+  }
+
+  .not-a-footer-parent {
+    position: relative;
+    left: -220px;
+  }
+
+  .not-a-footer-element {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  const text: HTMLElement | null = document.querySelector(
+    ".not-a-footer-wrapper"
+  );
+  const wrapperWidth: number | undefined = text?.getBoundingClientRect().width;
+
+  gsap.set(".not-a-footer-element", {
+    x: (i) => i * 220,
+  });
+
+  gsap.to(".not-a-footer-element", {
+    duration: 15,
+    ease: "none",
+    x: `+=${2200}`,
+    modifiers: {
+      x: gsap.utils.unitize((x) => parseFloat(x) % 2200),
+    },
+    repeat: -1,
+  });
+</script>

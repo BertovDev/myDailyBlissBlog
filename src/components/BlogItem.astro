@@ -1,22 +1,17 @@
 ---
 import FormatedDate from "./FormatedDate.astro";
-const { title, slug, pubDate, references } = Astro.props;
+const { title, slug, pubDate, description, imageUrl, ...style } = Astro.props;
 ---
 
-<li class="flex flex-col md:flex-row my-8 justify-start md:gap-5">
-  <FormatedDate date={pubDate} />
-  <a class="order-1" href={`/blog/${slug}/`}>
-    <h2
-      class="text-2xl lg:text-4xl underline underline-offset-4 inline-block pt-1 font-bold font-montserrat hover:underline hover:text-primary"
-    >
-      {title}
-    </h2>
+<li class="flex gap-y-6 flex-col gap-x-10 mt-7 items-start justify-start">
+  <a
+    class="flex gap-x-2 items-center font-montserrat text-lg md:text-2xl 2xl:text-4xl font-bold underline underline-offset-4 hover:text-primary-50"
+    href={`/blog/${slug}/`}
+  >
+    {title}
+    <img src="/link.svg" alt="link" width="30px" />
   </a>
+  <p class="pl-1 text-base md:text-lg 2xl:text-2xl font-mono opacity-80 w-3/4">
+    {description}.
+  </p>
 </li>
-
-<style>
-  h2,
-  h4 {
-    @apply font-bold;
-  }
-</style>
