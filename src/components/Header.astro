@@ -65,11 +65,6 @@ import { SITE_TITLE } from "../../consts";
 <script>
   import gsap from "gsap";
 
-  const text: HTMLElement | null = document.querySelector(
-    ".not-a-footer-wrapper"
-  );
-  const wrapperWidth: number | undefined = text?.getBoundingClientRect().width;
-
   gsap.set(".not-a-footer-element", {
     x: (i) => i * 220,
   });

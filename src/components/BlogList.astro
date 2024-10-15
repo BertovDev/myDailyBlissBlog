@@ -5,16 +5,25 @@ import BlogItem from "./BlogItem.astro";
 import FormatedDate from "./FormatedDate.astro";
 
 let posts = await getCollection("blog");
+let links = await getCollection("linkPage");
 
 type BlogCollectionEntry = CollectionEntry<"blog">;
+type LinkCollectionEntry = CollectionEntry<"linkPage">;
 
 const { titleName } = Astro.props;
 ---
 
-<div class="grid grid-cols-2 w-[90%] gap-x-10 ml-1 mt-10 overflow-auto">
+<!-- <div class="min-h-full overflow-y-auto w-full"> -->
+<div>
   {
     posts.map((el) => {
       return <BlogItem slug={el.slug} {...el.data} />;
     })
   }
 </div>
+<!-- {
+    links.map((el) => {
+      return <BlogItem slug={""} {...el.data} />;
+    })
+  } -->
+<!-- </div> -->

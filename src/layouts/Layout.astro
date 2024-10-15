@@ -23,6 +23,11 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <div
+      class="hidden lg:block w-full h-full bg-red-50 absolute top-10 left-[12%] opacity-10 -z-10"
+    >
+      <img class="w-full h-full object-cover" src="/jump.jpg" alt="" />
+    </div>
     <slot />
   </body>
 </html>

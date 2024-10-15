@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import { type CollectionEntry } from "astro:content";
+import BlogItem from "./BlogItem.astro";
+
+let links = await getCollection("linkPage");
+
+type LinkCollectionEntry = CollectionEntry<"linkPage">;
+---
+
+<div>
+  {
+    links.map((el) => {
+      return <BlogItem slug={""} {...el.data} />;
+    })
+  }
+</div>
