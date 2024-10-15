@@ -1,0 +1,35 @@
+---
+
+---
+
+<div class="hidden h-full w-full fixed z-30" id="gradient">
+  <img src="/thunder.svg" class="fill-white thunder" alt="" />
+  <img src="/thunder.svg" class="fill-white thunder2" alt="" />
+
+  <div id="drag-container" class="w-3/4 h-3/4 flex flex-col m-auto">
+    <img
+      id="drag"
+      src="/benji.png"
+      alt=""
+      class="benji-img absolute left-0 right-0 top-0 bottom-0 m-auto scale-50 opacity-0"
+    />
+  </div>
+  <div
+    class="benji-text opacity-0 absolute left-0 right-0 top-20 text-4xl text-center"
+  >
+    <h1 class="mb-2">
+      You invoked <span class="text-primary">BENJI</span>
+    </h1>
+    <h2>Pet him! or you DIE!</h2>
+  </div>
+</div>
+
+<style>
+  .thunder {
+    @apply opacity-0 top-0 left-40 absolute rotate-90;
+  }
+
+  .thunder2 {
+    @apply absolute right-40 top-32 h-1/2 w-full opacity-0  rotate-45;
+  }
+</style>

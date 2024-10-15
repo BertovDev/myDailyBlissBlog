@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import BlogList from "../components/BlogList.astro";
 import Header from "../components/Header.astro";
 import HeaderImage from "../components/HeaderImage.astro";
+import DesktopMain from "../components/main/DesktopMain.astro";
+import MobileMain from "../components/main/MobileMain.astro";
+import BenjiQuest from "../components/main/BenjiQuest.astro";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -11,134 +14,20 @@ import HeaderImage from "../components/HeaderImage.astro";
   >
     <HeaderImage />
 
-    <div class="flex flex-col h-full ml-[33%] lg:ml-[12%] w-full mt-10">
-      <div class="text-container flex flex-col justify-between h-full">
-        <div
-          class="hidden lg:block text-9xl sm:text-[7rem] md:text-[8rem] lg:text-[8.5rem] 2xl:text-[12rem] mb-4"
-        >
-          <span class="block relative">
-            <span class="absolute left-0 text-primary-150 underline"
-              >A COMPILATION OF</span
-            >
-            <span class="relative left-4 z-10 underline">A COMPILATION OF</span>
-          </span>
-          <span class="block relative mt-8">
-            <span class="absolute left-0 text-primary-150 underline"
-              >MY DAILY</span
-            >
-            <span class="relative z-10 left-4 underline">MY DAILY</span>
-          </span>
-          <span class="block relative mt-8">
-            <span class="absolute z-10 left-0 text-primary-150 underline"
-              >JOYNESS ***</span
-            >
-            <span class="relative z-10 left-4"
-              >JOYNESS <span class="text-white underline">***</span></span
-            >
-            <div
-              class="square1 w-full top-24 z-0 h-full bg-primary-150 absolute block"
-            >
-            </div>
-            <div
-              class="square2 w-3/4 top-25 left-20 z-0 h-full bg-primary absolute block"
-            >
-            </div>
-            <div
-              class="square3 w-1/2 top-20 left-5 z-0 h-full bg-primary-50 absolute block"
-            >
-            </div>
-          </span>
-        </div>
-      </div>
-
-      <div
-        class="text-container text-6xl sm:text-8xl md:text-9xl lg:text-7xl lg:hidden"
-      >
-        <div class="text-left break-words">
-          <p class="text text2 inline-block absolute text-primary-150">
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness">JOYNESS </span>
-            <br />
-          </p>
-          <p class="text text1 inline-block relative left-3">
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-            SOME OF<br />MY DAILY<br /><span class="joyness2">JOYNESS </span>
-            <br />
-          </p>
-        </div>
-      </div>
-
+    <div
+      class="flex flex-col h-full ml-[33%] lg:ml-[17%] xl:ml-[16%] 2xl:ml-[12%] w-full mt-10"
+    >
+      <DesktopMain />
+      <MobileMain />
       <Header />
     </div>
-
-    <div class="hidden h-full w-full fixed z-30" id="gradient">
-      <img src="/thunder.svg" class="fill-white thunder" alt="" />
-      <img src="/thunder.svg" class="fill-white thunder2" alt="" />
-
-      <div id="drag-container" class="w-3/4 h-3/4 flex flex-col m-auto">
-        <img
-          id="drag"
-          src="/benji.png"
-          alt=""
-          class="benji-img absolute left-0 right-0 top-0 bottom-0 m-auto scale-50 opacity-0"
-        />
-      </div>
-      <div
-        class="benji-text opacity-0 absolute left-0 right-0 top-20 text-4xl text-center"
-      >
-        <h1 class="mb-2">
-          You invoked <span class="text-primary">BENJI</span>
-        </h1>
-        <h2>Pet him! or you DIE!</h2>
-      </div>
-    </div>
+    <BenjiQuest />
   </main>
 </Layout>
 
 <style>
   body {
     overflow: hidden;
-  }
-
-  .text-container {
-    @apply font-darkerGrote font-bold uppercase;
-  }
-
-  .thunder {
-    @apply opacity-0 top-0 left-40 absolute rotate-90;
-  }
-
-  .thunder2 {
-    @apply absolute right-40 top-32 h-1/2 w-full opacity-0  rotate-45;
-  }
-
-  .text {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
   }
 </style>
 
@@ -257,7 +146,12 @@ import HeaderImage from "../components/HeaderImage.astro";
   });
 
   JoynessElementInViewport?.addEventListener("click", () => {
-    tl.to(headerImage, { opacity: 0, x: -100, duration: 0.5, display: "none" })
+    tl.to(headerImage, {
+      opacity: 0,
+      x: -100,
+      duration: 0.5,
+      display: "none",
+    })
       .to(header, { y: "+=100", duration: 0.5, display: "none" })
       .to(".text-container", {
         opacity: 0,

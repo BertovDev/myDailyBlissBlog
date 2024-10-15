@@ -3,29 +3,26 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import HeaderImage from "../../components/HeaderImage.astro";
 import BlogList from "../../components/BlogList.astro";
+import LinkList from "../../components/LinkList.astro";
 ---
 
-<Layout title="Blogs main page">
+<Layout title="Welcome to Astro.">
   <main
-    class="bg-black text-white min-h-screen flex flex-col lg:flex-row p-4 lg:p-0"
+    class="text-white min-h-screen h-screen flex flex-row items-start lg:flex-col lg:items-start lg:justify-around"
   >
     <HeaderImage />
-    <!-- <p
-      class="fixed hidden lg:inline text-xl w-full lg:top-0 lg:left-0 z-20 font-bold py-1 writing-vertical-rl transform rotate-180"
-    >
-      ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    </p> -->
+
     <div
-      class="pt-10 lg:pt-32 ml-[28%] lg:ml-[16.666667%] min-h-screen p-4 md:p-18 md:pt-24 overflow-y-auto lg:w-3/4 overflow-x-hidden"
+      class="flex flex-col justify-start h-full ml-[33%] md:ml-[25%] lg:ml-[17%] xl:ml-[16%] 2xl:ml-[12%] w-full mt-10 lg:mt-20"
     >
-      <div class="flex flex-col justify-between h-full">
-        <div
-          class="flex flex-col content-center justify-center px-4 lg:flex-row lg:justify-start lg:gap-x-40"
-        >
-          <BlogList titleName={"Posts"} />
-        </div>
+      <h1 class="text-4xl lg:text-5xl font-roboto font-bold text-primary">
+        Post collection
+      </h1>
+      <div class="grid grid-cols-1 lg:grid-cols-1 w-3/4">
+        <BlogList />
+        <LinkList />
       </div>
+      <Header />
     </div>
-    <Header />
   </main>
 </Layout>
