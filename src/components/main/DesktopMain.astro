@@ -4,39 +4,19 @@ import DesktopInfo from "./DesktopInfo.astro";
 import LinkList from "../LinkList.astro";
 ---
 
-<div class="hidden lg:flex flex-col h-full mt-10 lg:mt-0">
-  <div
-    class="hidden lg:block text-6xl sm:text-[7rem] md:text-[8rem] lg:text-[4.5rem] 2xl:text-[6rem] mb-4 font-roboto font-extrabold uppercase"
-  >
-    <span class="relative">
-      <span class="absolute left-0 text-primary-150">A COMPILATION</span>
-      <span class="relative left-4 z-10 text-gray-200">A COMPILATION</span>
-    </span>
-    <span class="relative mt-2">
-      <span class="absolute left-0 text-primary-150">OF MY DAILY JOYNESS</span>
-      <span class="relative z-10 left-4 text-gray-200">OF MY DAILY JOYNESS</span
-      >
-    </span>
-    <!-- <div
-      class="w-full h-full bg-red-50 absolute top-10 left-1/5 opacity-10 -z-10"
-    >
-      <img class="w-full h-full object-cover" src="/jump.jpg" alt="" />
-    </div> -->
-  </div>
-
-  <div
-    class="xl:w-[80%] 2xl:w-[86%] h-1 relative opacity-50 border-t-2 hidden lg:block"
-  >
-  </div>
-  <div
-    class="grid grid-cols-1 lg:grid-cols-2 w-[90%] lg:h-[85%] 2xl:h-3/4 gap-x-10 ml-1 mt-0 lg:mt-10 z-10"
-  >
-    <DesktopInfo />
-    <div class="min-h-full overflow-y-auto w-full">
-      <BlogList />
-      <LinkList />
-    </div>
+<div class="hidden lg:flex flex-col mt-10 lg:mt-0 h-full">
+  <div class="w-full">
+    <img
+      class="object-cover object-bottom w-full h-1/2 rounded-md shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300"
+      src="/jump.jpg"
+      alt=""
+    />
+    <BlogList />
   </div>
 </div>
 
-<style></style>
+<style>
+  img {
+    height: 200px;
+  }
+</style>
