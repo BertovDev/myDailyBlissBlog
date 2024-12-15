@@ -10,7 +10,7 @@ type BlogCollectionEntry = CollectionEntry<"blog">;
 const { titleName } = Astro.props;
 ---
 
-<div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+<div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-1">
   {
     posts.map((el) => {
       return <BlogItem slug={el.slug} {...el.data} />;
