@@ -3,10 +3,7 @@ import FormatedDate from "./FormatedDate.astro";
 const { title, description, imageUrl, url, ...style } = Astro.props;
 ---
 
-<a
-  href={url}
-  class="group block cursor-pointer px-3 border-b border-dashed pb-2"
->
+<a href={url} class="group block cursor-pointer px-3 pb-2">
   <li class="block group-hover:bg-neutral-900 p-2 transition-colors">
     <div class="flex items-start justify-between">
       <div class="flex flex-col gap-y-5">
@@ -16,7 +13,7 @@ const { title, description, imageUrl, url, ...style } = Astro.props;
           {title}
         </h1>
 
-        <p class="text-lg">
+        <p class="text-lg xl:text-xl">
           {description}
         </p>
       </div>
