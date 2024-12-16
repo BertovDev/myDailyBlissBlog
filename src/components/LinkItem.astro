@@ -1,0 +1,27 @@
+---
+import FormatedDate from "./FormatedDate.astro";
+const { title, description, imageUrl, url, ...style } = Astro.props;
+---
+
+<a
+  href={url}
+  class="group block cursor-pointer px-3 pb-2 border-t border-dashed"
+>
+  <li
+    class="block group-hover:bg-neutral-900 p-2 my-2 md:py-0 transition-colors"
+  >
+    <div class="flex items-start justify-between">
+      <div class="flex flex-col gap-y-2">
+        <h1
+          class="text-3xl xl:text-2xl font-bold tracking-wide uppercase group-hover:text-primary transition-colors font-mono"
+        >
+          {title}
+        </h1>
+
+        <p class="text-lg xl:text-xl">
+          {description}
+        </p>
+      </div>
+    </div>
+  </li>
+</a>

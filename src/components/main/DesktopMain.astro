@@ -4,39 +4,60 @@ import DesktopInfo from "./DesktopInfo.astro";
 import LinkList from "../LinkList.astro";
 ---
 
-<div class="hidden lg:flex flex-col h-full mt-10 lg:mt-0">
-  <div
-    class="hidden lg:block text-6xl sm:text-[7rem] md:text-[8rem] lg:text-[4.5rem] 2xl:text-[6rem] mb-4 font-roboto font-extrabold uppercase"
-  >
-    <span class="relative">
-      <span class="absolute left-0 text-primary-150">A COMPILATION</span>
-      <span class="relative left-4 z-10 text-gray-200">A COMPILATION</span>
-    </span>
-    <span class="relative mt-2">
-      <span class="absolute left-0 text-primary-150">OF MY DAILY JOYNESS</span>
-      <span class="relative z-10 left-4 text-gray-200">OF MY DAILY JOYNESS</span
-      >
-    </span>
-    <!-- <div
-      class="w-full h-full bg-red-50 absolute top-10 left-1/5 opacity-10 -z-10"
-    >
-      <img class="w-full h-full object-cover" src="/jump.jpg" alt="" />
-    </div> -->
-  </div>
+<div class="hidden lg:flex flex-col mt-10 lg:mt-0 h-full">
+  <div class="w-full h-full">
+    <img
+      class="object-cover object-bottom w-full h-1/2 rounded-md shadow-lg opacity-60 hover:opacity-100 transition-opacity duration-300"
+      src="/jump.jpg"
+      alt=""
+    />
 
-  <div
-    class="xl:w-[80%] 2xl:w-[86%] h-1 relative opacity-50 border-t-2 hidden lg:block"
-  >
-  </div>
-  <div
-    class="grid grid-cols-1 lg:grid-cols-2 w-[90%] lg:h-[85%] 2xl:h-3/4 gap-x-10 ml-1 mt-0 lg:mt-10 z-10"
-  >
-    <DesktopInfo />
-    <div class="min-h-full overflow-y-auto w-full">
-      <BlogList />
-      <LinkList />
+    <div class="flex flex-col">
+      <div
+        class="grid grid-rows-1 grid-cols-5 mt-5 border-t pt-5 border-dashed w-full"
+      >
+        <BlogList />
+        <div
+          class="col-span-3 flex gap-y-5 flex-col overflow-y-auto h-[400px] hide-scrollbar"
+        >
+          <LinkList />
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col justify-center items-center mt-4 pt-10 border-t border-dashed"
+      >
+        <p class="text-2xl xl:text-3xl 2xl:text-4xl font-mono">
+          <span class="text-primary">MyDailyBliss </span> plays as a musseum that
+          recompiles all the content that I found cool, interesting, on some sort
+          of way and I hope it does to yours too. No matter the topic, no matter
+          the time or space, you will find something that <span
+            class="text-primary-50">fullfills me</span
+          >.
+        </p>
+        <!-- <div class="relative text-8xl font-bold tracking-wide">
+          <h1 class="absolute left-3 text-white uppercase">
+            A compilation of my daily joyness
+          </h1>
+          <h1 class="uppercase mb-2 text-primary-100">
+            A compilation of my daily joyness
+          </h1>
+        </div> -->
+      </div>
     </div>
   </div>
 </div>
 
-<style></style>
+<style>
+  img {
+    height: 200px;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+</style>

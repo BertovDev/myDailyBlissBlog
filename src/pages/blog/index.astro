@@ -6,7 +6,7 @@ import BlogList from "../../components/BlogList.astro";
 import LinkList from "../../components/LinkList.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="My Daily Bliss.">
   <main
     class="text-white min-h-screen h-screen flex flex-row items-start lg:flex-col lg:items-start lg:justify-around"
   >
@@ -15,10 +15,7 @@ import LinkList from "../../components/LinkList.astro";
     <div
       class="flex flex-col justify-start h-full ml-[33%] md:ml-[25%] lg:ml-[17%] xl:ml-[16%] 2xl:ml-[12%] w-full mt-10 lg:mt-20"
     >
-      <h1 class="text-4xl lg:text-5xl font-roboto font-bold text-primary">
-        Post collection
-      </h1>
-      <div class="grid grid-cols-1 lg:grid-cols-1 w-3/4">
+      <div class="grid grid-cols-1 lg:grid-cols-1">
         <BlogList />
         <LinkList />
       </div>

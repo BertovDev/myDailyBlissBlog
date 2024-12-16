@@ -1,6 +1,6 @@
 ---
 title: "Design as a company"
-description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
+description: "How to structure your code as a company with responsabilities."
 pubDate: "11 Jun 2024"
 references:
   [
