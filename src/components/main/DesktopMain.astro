@@ -5,14 +5,14 @@ import LinkList from "../LinkList.astro";
 ---
 
 <div class="hidden lg:flex flex-col mt-10 lg:mt-0 h-full">
-  <div class="w-full h-full">
+  <div class="relative w-full h-full">
     <img
       class="object-cover object-bottom w-full h-1/2 rounded-md shadow-lg opacity-60 hover:opacity-100 transition-opacity duration-300"
       src="/jump.jpg"
       alt=""
     />
 
-    <div class="flex flex-col">
+    <div class="flex flex-col h-full">
       <div
         class="grid grid-rows-1 grid-cols-5 mt-5 border-t pt-5 border-dashed h-full w-full"
       >
@@ -22,26 +22,20 @@ import LinkList from "../LinkList.astro";
         </div>
       </div>
 
-      <div
+      <!-- <div
         class="flex flex-col justify-center items-center mt-4 pt-10 border-t border-dashed"
       >
-        <p class="text-5xl">
-          <span class="text-primary">MyDailyBliss </span> plays as a musseum that
-          recompiles all the content that I found cool, interesting, on some sort
-          of way and I hope it does to yours too. No matter the topic, no matter
-          the time or space, you will find something that <span
-            class="text-primary-50">fullfills me</span
+        <p class="text-xl 2xl:text-3xl font-mono">
+          <span class="text-primary">MyDailyBliss</span> serves as a museum that
+          compiles all the content I find cool and interesting in some way, and I
+          hope it does the same for you. No matter the topic, no matter the time
+          or space, you will find something that <span class="text-primary-50"
+            >fulfills me</span
           >.
         </p>
-        <!-- <div class="relative text-8xl font-bold tracking-wide">
-          <h1 class="absolute left-3 text-white uppercase">
-            A compilation of my daily joyness
-          </h1>
-          <h1 class="uppercase mb-2 text-primary-100">
-            A compilation of my daily joyness
-          </h1>
-        </div> -->
-      </div>
+
+ 
+      </div> -->
     </div>
   </div>
 </div>

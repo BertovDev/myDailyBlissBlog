@@ -6,25 +6,29 @@ const { title, slug, pubDate, description, imageUrl, url, ...style } =
 
 <a
   href={slug !== "" ? `/blog/${slug}/` : url}
-  class="group block cursor-pointer px-3 border-r border-dashed"
+  class="group block cursor-pointer px-3 border-r border-dashed row-span-2 xl:row-span-1"
 >
   <li class="block group-hover:bg-neutral-900 p-2 transition-colors">
     <div class="flex items-start justify-between">
-      <div class="flex flex-col gap-y-5">
-        <div class="text-4xl tracking-[0.2em] text-neutral-500">
+      <div class="flex flex-col justify-between gap-y-5">
+        <div class="text-2xl 2xl:text-3xl tracking-[0.2em] text-neutral-500">
           <FormatedDate date={pubDate} />
         </div>
         <h1
-          class="text-4xl font-bold tracking-wide uppercase group-hover:text-primary transition-colors font-mono"
+          class="text-3xl 2xl:text-4xl font-bold tracking-wide uppercase group-hover:text-primary transition-colors font-mono"
         >
           {title}
         </h1>
 
-        <p class="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dicta
-          quod nulla labore, cupiditate ipsa adipisci tenetur tempore vel
-          voluptate consequatur beatae. Placeat, quasi debitis itaque error
-          voluptatibus possimus quibusdam?
+        <!-- <div>
+          <img src={imageUrl} class="opacity-90 object-scale-bottom" alt="" />
+        </div> -->
+
+        <p class="text-lg 2xl:text-2xl 2xl:tracking-widest">
+          {description}
+          <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dicta quod
+          nulla labore, cupiditate ipsa adipisci tenetur tempore vel voluptate consequatur
+          beatae. Placeat, quasi debitis itaque error voluptatibus possimus quibusdam? -->
         </p>
       </div>
     </div>

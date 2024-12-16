@@ -1,7 +1,8 @@
 ---
 title: "My current interests"
-description: "Just a brief description of my current interests at this moment"
+description: "Just a brief description of my current interests at this moment, My interest might change a lot, mostly those that change or disappear are not fully aligned with my values and myself, their are just experimental."
 pubDate: "24 Oct 2024"
+imageUrl: "/skull.jpg"
 references: ["Me , myself and I with a strong influence of Naval Ravikant"]
 ---
 

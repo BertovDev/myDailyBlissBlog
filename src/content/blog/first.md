@@ -1,7 +1,8 @@
 ---
 title: "Design as a company"
-description: "How to structure your code as a company with responsabilities."
+description: "This concept of think of software as a company or a real world metaphor seems really cool to me, it encapsulate a bunch of important topics in software development, and I can connect different lectures , let me explain."
 pubDate: "11 Jun 2024"
+imageUrl: "/nodecaf.png"
 references:
   [
     "About Design, Shmulik London / Matific CTO",
