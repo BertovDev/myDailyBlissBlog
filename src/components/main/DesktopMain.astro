@@ -14,10 +14,12 @@ import LinkList from "../LinkList.astro";
 
     <div class="flex flex-col">
       <div
-        class="grid grid-rows-1 grid-cols-5 mt-5 border-t pt-5 border-dashed h-full w-full"
+        class="grid grid-rows-1 grid-cols-5 mt-5 border-t pt-5 border-dashed w-full"
       >
         <BlogList />
-        <div class="col-span-3 flex gap-y-5 flex-col">
+        <div
+          class="col-span-3 flex gap-y-5 flex-col overflow-y-auto h-[400px] hide-scrollbar"
+        >
           <LinkList />
         </div>
       </div>
@@ -49,5 +51,13 @@ import LinkList from "../LinkList.astro";
 <style>
   img {
     height: 200px;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 </style>
