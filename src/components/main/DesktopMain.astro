@@ -4,51 +4,27 @@ import DesktopInfo from "./DesktopInfo.astro";
 import LinkList from "../LinkList.astro";
 ---
 
-<div class="hidden lg:flex flex-col mt-10 lg:mt-0 h-full">
-  <div class="w-full h-full">
+<div class="hidden lg:flex flex-col mt-10 lg:mt-0">
+  <div class="w-full">
     <img
-      class="object-cover object-bottom w-full h-1/2 rounded-md shadow-lg opacity-60 hover:opacity-100 transition-opacity duration-300"
+      class="object-cover object-bottom w-full rounded-md shadow-lg opacity-60 hover:opacity-100 transition-opacity duration-300"
       src="/jump.jpg"
       alt=""
     />
-
-    <div class="flex flex-col">
-      <div
-        class="grid grid-rows-1 grid-cols-5 mt-5 border-t pt-5 border-dashed w-full"
-      >
+    <div class="content mt-3 overflow-y-auto hide-scrollbar">
+      <div class="grid grid-cols-1 grid-rows-1">
         <BlogList />
-        <div
-          class="col-span-3 flex gap-y-5 flex-col overflow-y-auto h-[400px] hide-scrollbar"
-        >
-          <LinkList />
-        </div>
-      </div>
-
-      <div
-        class="flex flex-col justify-center items-center mt-4 pt-10 border-t border-dashed"
-      >
-        <p class="text-2xl xl:text-3xl 2xl:text-4xl font-mono">
-          <span class="text-primary">MyDailyBliss </span> plays as a musseum that
-          recompiles all the content that I found cool, interesting, on some sort
-          of way and I hope it does to yours too. No matter the topic, no matter
-          the time or space, you will find something that <span
-            class="text-primary-50">fullfills me</span
-          >.
-        </p>
-        <!-- <div class="relative text-8xl font-bold tracking-wide">
-          <h1 class="absolute left-3 text-white uppercase">
-            A compilation of my daily joyness
-          </h1>
-          <h1 class="uppercase mb-2 text-primary-100">
-            A compilation of my daily joyness
-          </h1>
-        </div> -->
+        <LinkList />
       </div>
     </div>
   </div>
 </div>
 
 <style>
+  .content {
+    height: calc(100vh - 310px);
+  }
+
   img {
     height: 200px;
   }
