@@ -14,7 +14,9 @@ You have problem A, to solve problem A in the process you learn something toward
 
 <br />
 
+<span class="inline-block" style="color: #9571D5;font-weight:800">
 I know it is better, because it is fun.
+</span>
 
 <br />
 
@@ -22,16 +24,16 @@ Is a challenge, is like doing a mission in a game. You have to kill a Boss or so
 
 <br />
 
-So we can also call this Quest-based learning if we think this as the action of complete a "quest" in order to learn somethings, in my opinion that makes it more joyful.
+So we can also call this <span className="italic" style="color: #9571D5;font-weight:800"> Quest-based learning </span>if we think this as the action of complete a "quest" in order to learn somethings, in my opinion that makes it more joyful.
 
 <br />
 
 Example, you want to learn how to make medialunas (Man I love medialunas), so you put yourself a quest and you say to your friends, next party I will bring my own medialunas but you do not nothing about medialunas making.
 
-<br />
-
-Now you have a quest, satisfy you hungry gluttons friends, to complete this you are learning how to make medialunas, when the day arrives you solved the quest and became the wizard of medialunas in the middle.
+Now you have a quest, satisfy you hungry gluttons friends, to complete this you are learning how to make medialunas, when the day arrives you solved the quest and became <span className="italic" style="color: #9571D5;font-weight:800">The Medialunas Wizard.</span>
 
 <br />
 
+<span className="italic" style="color: #9571D5;font-weight:800">
 So you solve and learn, that is what this is about. Create or find those "Problems", "Quest" and learn in the process of solving them. Those are real word cases, you will have more fun.
+</span>
