@@ -11,6 +11,15 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="My daily bliss blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@YourTwitterHandle" />
+    <meta name="twitter:title" content={title} />
+    <meta
+      name="twitter:description"
+      content="Things that fills me and find cool in a daily basis"
+    />
+    <meta name="twitter:image" content="/jump.jpg" />
+    <meta name="twitter:image:alt" content="My daily bliss blog" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
