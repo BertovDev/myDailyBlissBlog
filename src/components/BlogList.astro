@@ -1,17 +1,29 @@
 ---
-import { getCollection } from "astro:content";
-import { type CollectionEntry } from "astro:content";
+import { sanityClient } from "sanity:client";
 import BlogItem from "./BlogItem.astro";
 
-let posts = await getCollection("blog");
+interface SanityPost {
+  _id: string;
+  title: string;
+  description?: string;
+  publishedAt: string;
+  slug: string;
+}
 
-type BlogCollectionEntry = CollectionEntry<"blog">;
-
-const { titleName } = Astro.props;
+const posts = await sanityClient.fetch<SanityPost[]>(`
+  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc){
+    _id, title, description, publishedAt, "slug": slug.current
+  }
+`);
 ---
 
 {
-  posts.map((el) => {
-    return <BlogItem slug={el.slug} {...el.data} />;
-  })
+  posts.map((post) => (
+    <BlogItem
+      slug={post.slug}
+      title={post.title}
+      description={post.description ?? ""}
+      pubDate={post.publishedAt}
+    />
+  ))
 }

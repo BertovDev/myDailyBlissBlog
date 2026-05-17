@@ -1,0 +1,28 @@
+---
+import { PortableText } from "astro-portabletext";
+import HighlightMark from "./HighlightMark.astro";
+import LinkMark from "./LinkMark.astro";
+import ImageBlock from "./ImageBlock.astro";
+import ImageGalleryBlock from "./ImageGalleryBlock.astro";
+
+interface Props {
+  value: any;
+}
+
+const { value } = Astro.props;
+
+// Cast to any because astro-portabletext's Component type expects a function
+// signature that doesn't match Astro's compiled component output.
+const components = {
+  type: {
+    imageWithAlt: ImageBlock,
+    imageGallery: ImageGalleryBlock,
+  },
+  mark: {
+    link: LinkMark,
+    highlight: HighlightMark,
+  },
+} as any;
+---
+
+<PortableText value={value} components={components} />

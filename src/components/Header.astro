@@ -52,13 +52,14 @@ import { SITE_TITLE } from "../../consts";
 
   .not-a-footer-parent {
     position: relative;
-    left: -220px;
+    left: -307px;
   }
 
   .not-a-footer-element {
     position: absolute;
-    width: 200px;
+    width: 289px;
     height: 30px;
+    white-space: nowrap;
   }
 </style>
 
@@ -66,15 +67,15 @@ import { SITE_TITLE } from "../../consts";
   import gsap from "gsap";
 
   gsap.set(".not-a-footer-element", {
-    x: (i) => i * 220,
+    x: (i) => i * 307,
   });
 
   gsap.to(".not-a-footer-element", {
     duration: 15,
     ease: "none",
-    x: `+=${2200}`,
+    x: `+=${3070}`,
     modifiers: {
-      x: gsap.utils.unitize((x) => parseFloat(x) % 2200),
+      x: gsap.utils.unitize((x) => parseFloat(x) % 3070),
     },
     repeat: -1,
   });

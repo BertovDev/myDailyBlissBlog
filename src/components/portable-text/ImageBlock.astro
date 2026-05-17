@@ -1,0 +1,19 @@
+---
+import SanityImage from "../SanityImage.astro";
+
+interface Props {
+  node: {
+    alt?: string;
+    caption?: string;
+    asset?: any;
+  };
+}
+
+const { node } = Astro.props;
+---
+
+<SanityImage
+  value={node}
+  class="my-8 mx-auto md:float-right md:ml-8 md:mb-4 md:mt-0 max-w-xs md:max-w-sm w-full aspect-square overflow-hidden"
+  imgClass="w-full h-full object-cover"
+/>
