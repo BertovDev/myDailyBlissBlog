@@ -1,0 +1,405 @@
+---
+import { urlFor } from "../../lib/sanity-image";
+
+interface GalleryImage {
+  _key?: string;
+  alt?: string;
+  caption?: string;
+  asset?: {
+    _id?: string;
+    url?: string;
+    metadata?: {
+      dimensions?: { width: number; height: number; aspectRatio: number };
+      lqip?: string;
+    };
+  };
+}
+
+interface Props {
+  node: {
+    images?: GalleryImage[];
+  };
+}
+
+const { node } = Astro.props;
+const all = (node?.images ?? []).filter((img) => Boolean(img?.asset));
+
+// 31-image masonry layout: 6-col grid on desktop (3-col mobile) with
+// column-stacks of 2-3 images, a standalone image, and a wide bottom section
+// of three rows.
+//   col1: 0,1     col2: 2,3     col3: 4,5,6
+//   solo: 7       col5: 8,9,10  col6: 11,12,13
+//   bottomRow1: 14..19   bottomRow2: 20..25   bottomRow3: 26..30
+const col1 = all.slice(0, 2);
+const col2 = all.slice(2, 4);
+const col3 = all.slice(4, 7);
+const solo = all[7];
+const col5 = all.slice(8, 11);
+const col6 = all.slice(11, 14);
+const bottomRow1 = all.slice(14, 20);
+const bottomRow2 = all.slice(20, 26);
+const bottomRow3 = all.slice(26, 31);
+
+const imgSrc = (img: GalleryImage) => urlFor(img).width(1600).url();
+const imgThumb = (img: GalleryImage) => urlFor(img).width(640).url();
+
+const thumbProps = (img: GalleryImage) => {
+  const dims = img?.asset?.metadata?.dimensions;
+  const lqip = img?.asset?.metadata?.lqip;
+  return {
+    src: imgThumb(img),
+    fullSrc: imgSrc(img),
+    alt: img.alt ?? "",
+    width: dims?.width,
+    height: dims?.height,
+    lqipStyle: lqip
+      ? `background-image:url(${lqip});background-size:cover;background-position:center;`
+      : undefined,
+  };
+};
+---
+
+<div class="grid grid-flow-row md:grid-cols-6 grid-cols-3 gap-1 mt-8 overflow-hidden">
+  {
+    col1.length > 0 && (
+      <div class="flex flex-col gap-1">
+        {col1.map((img) => {
+          const p = thumbProps(img);
+          return (
+            <button
+              type="button"
+              class="gallery-item block cursor-pointer overflow-hidden"
+              data-fullsrc={p.fullSrc}
+              data-alt={p.alt}
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                style={p.lqipStyle}
+                class="w-full h-auto"
+              />
+            </button>
+          );
+        })}
+      </div>
+    )
+  }
+  {
+    col2.length > 0 && (
+      <div class="flex flex-col gap-1">
+        {col2.map((img) => {
+          const p = thumbProps(img);
+          return (
+            <button
+              type="button"
+              class="gallery-item block cursor-pointer overflow-hidden"
+              data-fullsrc={p.fullSrc}
+              data-alt={p.alt}
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                style={p.lqipStyle}
+                class="w-full h-auto"
+              />
+            </button>
+          );
+        })}
+      </div>
+    )
+  }
+  {
+    col3.length > 0 && (
+      <div class="flex flex-col gap-1">
+        {col3.map((img) => {
+          const p = thumbProps(img);
+          return (
+            <button
+              type="button"
+              class="gallery-item block cursor-pointer overflow-hidden"
+              data-fullsrc={p.fullSrc}
+              data-alt={p.alt}
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                style={p.lqipStyle}
+                class="w-full h-auto"
+              />
+            </button>
+          );
+        })}
+      </div>
+    )
+  }
+  {
+    solo && (() => {
+      const p = thumbProps(solo);
+      return (
+        <button
+          type="button"
+          class="gallery-item block cursor-pointer overflow-hidden self-start"
+          data-fullsrc={p.fullSrc}
+          data-alt={p.alt}
+        >
+          <img
+            src={p.src}
+            alt={p.alt}
+            width={p.width}
+            height={p.height}
+            loading="lazy"
+            decoding="async"
+            style={p.lqipStyle}
+            class="w-full h-auto"
+          />
+        </button>
+      );
+    })()
+  }
+  {
+    col5.length > 0 && (
+      <div class="flex flex-col gap-1">
+        {col5.map((img) => {
+          const p = thumbProps(img);
+          return (
+            <button
+              type="button"
+              class="gallery-item block cursor-pointer overflow-hidden"
+              data-fullsrc={p.fullSrc}
+              data-alt={p.alt}
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                style={p.lqipStyle}
+                class="w-full h-auto"
+              />
+            </button>
+          );
+        })}
+      </div>
+    )
+  }
+  {
+    col6.length > 0 && (
+      <div class="flex flex-col gap-1">
+        {col6.map((img) => {
+          const p = thumbProps(img);
+          return (
+            <button
+              type="button"
+              class="gallery-item block cursor-pointer overflow-hidden"
+              data-fullsrc={p.fullSrc}
+              data-alt={p.alt}
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                style={p.lqipStyle}
+                class="w-full h-auto"
+              />
+            </button>
+          );
+        })}
+      </div>
+    )
+  }
+
+  {/* Bottom section spans full width and contains three rows of images. */}
+  {
+    (bottomRow1.length || bottomRow2.length || bottomRow3.length) > 0 && (
+      <div class="flex flex-col gap-1 col-span-3 md:col-span-6">
+        {bottomRow1.length > 0 && (
+          <div class="grid grid-cols-3 md:flex md:flex-row gap-1">
+            {bottomRow1.map((img) => {
+              const p = thumbProps(img);
+              return (
+                <button
+                  type="button"
+                  class="gallery-item block cursor-pointer overflow-hidden md:flex-1"
+                  data-fullsrc={p.fullSrc}
+                  data-alt={p.alt}
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    width={p.width}
+                    height={p.height}
+                    loading="lazy"
+                    decoding="async"
+                    style={p.lqipStyle}
+                    class="w-full h-auto"
+                  />
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {bottomRow2.length > 0 && (
+          <div class="grid grid-cols-3 md:flex md:flex-row gap-1">
+            {bottomRow2.map((img) => {
+              const p = thumbProps(img);
+              return (
+                <button
+                  type="button"
+                  class="gallery-item block cursor-pointer overflow-hidden md:flex-1"
+                  data-fullsrc={p.fullSrc}
+                  data-alt={p.alt}
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    width={p.width}
+                    height={p.height}
+                    loading="lazy"
+                    decoding="async"
+                    style={p.lqipStyle}
+                    class="w-full h-auto"
+                  />
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {bottomRow3.length > 0 && (
+          <div class="grid grid-cols-2 md:flex md:flex-row gap-1">
+            {bottomRow3.map((img) => {
+              const p = thumbProps(img);
+              return (
+                <button
+                  type="button"
+                  class="gallery-item block cursor-pointer overflow-hidden md:flex-1"
+                  data-fullsrc={p.fullSrc}
+                  data-alt={p.alt}
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    width={p.width}
+                    height={p.height}
+                    loading="lazy"
+                    decoding="async"
+                    style={p.lqipStyle}
+                    class="w-full h-auto"
+                  />
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    )
+  }
+</div>
+
+<div
+  id="image-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center"
+  style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);"
+>
+  <div
+    class="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
+  >
+    <img
+      id="modal-image"
+      src=""
+      alt="Enlarged image"
+      class="max-w-full max-h-[90vh] object-contain"
+    />
+    <button
+      id="close-modal"
+      class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-gray-300 transition-colors"
+      aria-label="Close modal">&times;</button
+    >
+  </div>
+</div>
+
+<script>
+  function openImageModal(imageSrc: string, altText: string) {
+    const modal = document.getElementById("image-modal");
+    const modalImage = document.getElementById(
+      "modal-image",
+    ) as HTMLImageElement | null;
+    if (!modal || !modalImage) return;
+    modalImage.src = imageSrc;
+    modalImage.alt = altText || "Enlarged image";
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeImageModal() {
+    const modal = document.getElementById("image-modal");
+    if (!modal) return;
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll<HTMLButtonElement>(".gallery-item").forEach(
+      (btn) => {
+        btn.addEventListener("click", () => {
+          const src = btn.dataset.fullsrc;
+          const alt = btn.dataset.alt ?? "";
+          if (src) openImageModal(src, alt);
+        });
+      },
+    );
+
+    const modal = document.getElementById("image-modal");
+    if (modal) {
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeImageModal();
+      });
+    }
+
+    const closeBtn = document.getElementById("close-modal");
+    if (closeBtn) closeBtn.addEventListener("click", closeImageModal);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeImageModal();
+    });
+  });
+</script>
+
+<style>
+  #image-modal {
+    transition: opacity 0.3s ease;
+  }
+
+  #modal-image {
+    animation: scaleIn 0.3s ease;
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>

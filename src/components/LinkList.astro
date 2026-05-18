@@ -1,15 +1,27 @@
 ---
-import { getCollection } from "astro:content";
-import { type CollectionEntry } from "astro:content";
+import { sanityClient } from "sanity:client";
 import LinkItem from "./LinkItem.astro";
 
-let links = await getCollection("linkPage");
+interface SanityExternalLink {
+  _id: string;
+  title: string;
+  url: string;
+  description?: string;
+}
 
-type LinkCollectionEntry = CollectionEntry<"linkPage">;
+const links = await sanityClient.fetch<SanityExternalLink[]>(`
+  *[_type == "externalLink" && !(_id in path("drafts.**"))] | order(coalesce(order, 9999) asc, title asc){
+    _id, title, url, description
+  }
+`);
 ---
 
 {
-  links.map((el) => {
-    return <LinkItem slug={""} {...el.data} />;
-  })
+  links.map((link) => (
+    <LinkItem
+      title={link.title}
+      url={link.url}
+      description={link.description ?? ""}
+    />
+  ))
 }

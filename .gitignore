@@ -16,6 +16,12 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env*.local
+
+# TLDR local tooling
+.tldr/
+.tldrignore
 
 # macOS-specific files
 .DS_Store
@@ -23,5 +29,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Local Netlify folder
-.netlify
+# Local Vercel folder
+.vercel

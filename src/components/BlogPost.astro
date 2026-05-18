@@ -1,11 +1,18 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
 import FormatedDate from "./FormatedDate.astro";
-import HeaderImage from "./HeaderImage.astro";
 
-type EntryProps = CollectionEntry<"blog">["data"];
+interface PostReference {
+  label: string;
+  url?: string;
+}
+
+interface Props {
+  title: string;
+  pubDate: Date;
+  references: PostReference[];
+}
 
 const { title, pubDate, references } = Astro.props;
 ---
@@ -35,17 +42,19 @@ const { title, pubDate, references } = Astro.props;
         <h3 class="pt-10 lg:text-3xl">References</h3>
         <ul role="list" class="pb-10 pl-3 text-xl">
           {
-            references.map((reference: string) => (
+            references.map((ref) => (
               <li class="my-2">
-                {reference.includes("http") ? (
+                {ref.url ? (
                   <a
                     class="text-blue-100 underline underline-offset-4"
-                    href={reference}
+                    href={ref.url}
+                    target="_blank"
+                    rel="noopener"
                   >
-                    {reference}
+                    {ref.label}
                   </a>
                 ) : (
-                  reference
+                  ref.label
                 )}
               </li>
             ))

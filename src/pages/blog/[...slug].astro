@@ -1,20 +1,72 @@
 ---
-import { getCollection } from "astro:content";
+import { sanityClient } from "sanity:client";
 import BlogPost from "../../components/BlogPost.astro";
-import { type CollectionEntry } from "astro:content";
+import PortableTextRenderer from "../../components/portable-text/PortableTextRenderer.astro";
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
-  return blogEntries.map((entry: CollectionEntry<"blog">) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+interface SanityPostSlug {
+  slug: string;
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+interface SanityPostFull {
+  title: string;
+  description?: string;
+  publishedAt: string;
+  body?: any[];
+  references?: { label: string; url?: string }[];
+  hero?: {
+    alt?: string;
+    caption?: string;
+    asset?: {
+      _id?: string;
+      url?: string;
+      metadata?: {
+        dimensions?: { width: number; height: number; aspectRatio: number };
+        lqip?: string;
+      };
+    };
+  };
+}
+
+export async function getStaticPaths() {
+  const slugs = await sanityClient.fetch<SanityPostSlug[]>(
+    `*[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current)]{ "slug": slug.current }`,
+  );
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await sanityClient.fetch<SanityPostFull | null>(
+  `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
+    title, description, publishedAt, references,
+    hero{ alt, caption, asset->{ _id, url, metadata { dimensions, lqip } } },
+    body[]{
+      ...,
+      _type == "imageWithAlt" => {
+        ...,
+        asset->{ _id, url, metadata { dimensions, lqip } }
+      },
+      _type == "imageGallery" => {
+        ...,
+        images[]{
+          ...,
+          asset->{ _id, url, metadata { dimensions, lqip } }
+        }
+      },
+      markDefs[]{ ... }
+    }
+  }`,
+  { slug },
+);
+
+if (!post) {
+  throw new Error(`Post not found for slug: ${slug}`);
+}
 ---
 
-<BlogPost {...entry.data}>
-  <Content />
+<BlogPost
+  title={post.title}
+  pubDate={new Date(post.publishedAt)}
+  references={post.references ?? []}
+>
+  <PortableTextRenderer value={post.body} />
 </BlogPost>

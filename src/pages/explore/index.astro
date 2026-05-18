@@ -83,7 +83,7 @@ import HeaderImage from "../../components/HeaderImage.astro";
   Draggable.create("#drag", {
     type: "x,y",
     bounds: ".container",
-    onDrag: (e) => {
+    onDrag: () => {
       gsap.to(".benji", {
         scale: "+=0.1",
         onUpdate: () => {

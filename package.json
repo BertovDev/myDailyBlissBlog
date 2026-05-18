@@ -1,7 +1,28 @@
 {
   "name": "",
-  "type": "module",
   "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/check": "^0.9.3",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^5.1.0",
+    "@sanity/astro": "^3.4.0",
+    "@sanity/client": "^7.22.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.25.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "astro": "^4.15.3",
+    "astro-portabletext": "^0.13.0",
+    "gsap": "^3.12.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-is": "^19.0.0",
+    "sanity": "^5.25.1",
+    "sanity-plugin-media": "^4.3.0",
+    "styled-components": "^6.1.13",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,13 +30,5 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/netlify": "^5.5.3",
-    "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.15.3",
-    "gsap": "^3.12.5",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4"
-  }
+  "type": "module"
 }

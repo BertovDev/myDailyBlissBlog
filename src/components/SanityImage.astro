@@ -1,0 +1,79 @@
+---
+import { urlFor } from "../lib/sanity-image";
+
+interface Props {
+  value: {
+    alt?: string;
+    caption?: string;
+    asset?: {
+      url?: string;
+      metadata?: {
+        dimensions?: { width: number; height: number; aspectRatio: number };
+        lqip?: string;
+      };
+    };
+  };
+  class?: string;
+  imgClass?: string;
+  sizes?: string;
+  loading?: "lazy" | "eager";
+}
+
+const {
+  value,
+  class: className = "",
+  imgClass = "w-full h-auto object-contain",
+  sizes = "(max-width: 768px) 100vw, 75vw",
+  loading = "lazy",
+} = Astro.props;
+
+const usingCustomImgClass = Astro.props.imgClass !== undefined;
+
+const hasAsset = Boolean(value?.asset);
+const widths = [320, 480, 768, 1024, 1280, 1600, 1920];
+
+const baseUrl = hasAsset ? urlFor(value).width(1280).url() : "";
+const srcset = hasAsset
+  ? widths.map((w) => `${urlFor(value).width(w).url()} ${w}w`).join(", ")
+  : "";
+
+const lqip = value?.asset?.metadata?.lqip;
+const dims = value?.asset?.metadata?.dimensions;
+const aspect = dims?.aspectRatio;
+const alt = value?.alt ?? "";
+
+if (!hasAsset && import.meta.env.DEV) {
+  console.warn(
+    `[SanityImage] skipped render — value has no asset:`,
+    JSON.stringify(value),
+  );
+}
+---
+
+{
+  hasAsset && (
+    <figure class={`relative ${className}`}>
+      <img
+        src={baseUrl}
+        srcset={srcset}
+        sizes={sizes}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        width={dims?.width}
+        height={dims?.height}
+        style={lqip
+          ? `background-image:url(${lqip});background-size:cover;background-position:center;${!usingCustomImgClass && aspect ? `aspect-ratio:${aspect};` : ""}`
+          : !usingCustomImgClass && aspect
+            ? `aspect-ratio:${aspect};`
+            : undefined}
+        class={imgClass}
+      />
+      {value?.caption && (
+        <figcaption class="text-sm text-neutral-400 mt-2 italic">
+          {value.caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}

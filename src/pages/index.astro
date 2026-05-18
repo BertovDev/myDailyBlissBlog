@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BlogList from "../components/BlogList.astro";
 import Header from "../components/Header.astro";
 import HeaderImage from "../components/HeaderImage.astro";
 import DesktopMain from "../components/main/DesktopMain.astro";
@@ -116,7 +115,7 @@ import BenjiQuest from "../components/main/BenjiQuest.astro";
   Draggable.create("#drag", {
     type: "x,y",
     bounds: "#drag-container",
-    onDrag: (e) => {
+    onDrag: () => {
       gsap.to(".benji-img", {
         scale: "+=0.1",
         onUpdate: () => {
