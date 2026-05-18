@@ -19,12 +19,6 @@ pnpm-debug.log*
 .env.local
 .env*.local
 
-# migration cache (asset upload checkpoint)
-scripts/.migration-assets.json
-
-# migration dry-run output (regenerated on every run)
-scripts/migration-output.ndjson
-
 # TLDR local tooling
 .tldr/
 .tldrignore

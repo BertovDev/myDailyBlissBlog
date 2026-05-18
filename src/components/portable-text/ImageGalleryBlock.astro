@@ -24,11 +24,9 @@ interface Props {
 const { node } = Astro.props;
 const all = (node?.images ?? []).filter((img) => Boolean(img?.asset));
 
-// Migration preserved markdown image order, so we can rebuild the original
-// masonry layout from 2025.md by index. The original layout was a 6-col grid
-// (3-col on mobile) of column-stacks plus a wide bottom section.
-//
-// Index map (matches src/content/blog/2025.md image order):
+// 31-image masonry layout: 6-col grid on desktop (3-col mobile) with
+// column-stacks of 2-3 images, a standalone image, and a wide bottom section
+// of three rows.
 //   col1: 0,1     col2: 2,3     col3: 4,5,6
 //   solo: 7       col5: 8,9,10  col6: 11,12,13
 //   bottomRow1: 14..19   bottomRow2: 20..25   bottomRow3: 26..30
