@@ -2,14 +2,13 @@ import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
 import tailwind from "@astrojs/tailwind";
-import netlify from "@astrojs/netlify";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
 const {
   PUBLIC_SANITY_PROJECT_ID,
   PUBLIC_SANITY_DATASET,
-} = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "");
+} = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "PUBLIC_");
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,7 +25,4 @@ export default defineConfig({
     tailwind(),
   ],
   output: "static",
-  adapter: netlify({
-    functionPerRoute: true,
-  }),
 });
